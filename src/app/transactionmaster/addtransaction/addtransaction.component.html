@@ -1,0 +1,111 @@
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="container-fluid">
+                <h3 *ngIf="isAddMode">Add Transaction</h3>
+                <h3 *ngIf="!isAddMode">Edit Transaction </h3>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" >
+                <div class="card">
+                    <div class="card-header">Transaction Entry</div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                                                   
+
+                            <div class="form-group col-6">
+                                <label>TransactionId</label>
+                                <input class="form-control" formControlName="trxId" type="text" [readonly]="!isAddMode" >
+                                <span class="text-danger"
+                                    *ngIf="form.controls['trxId'].touched && form.controls['trxId'].hasError('required')">
+                                   Transaction Credit is required! </span>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="drCr">Debit/Credit</label>
+                                
+                                    <input type="radio" value="1" name="drCr" formControlName="drCr"
+                            >
+                                    <label for="Yes">Yes</label>
+                                
+                                <div>
+                                    <input type="radio" value="2" name="drCr" formControlName="drCr">
+                                    <label for="No">No</label>
+                                </div>
+    
+                                <span class="text-danger"
+                                *ngIf="form.controls['drCr'].touched && form.controls['drCr'].hasError('required')">
+                                Select Debit Credit Option </span>
+                            </div>
+    
+
+
+                            <div class="form-group col-6">
+                                <label>Transaction Detail</label>
+                                <input class="form-control" formControlName="trxDetail" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['trxDetail'].touched && form.controls['trxDetail'].hasError('required')">
+                                    Transaction Details  required! </span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>AccountId1</label>
+                                <input class="form-control" formControlName="accountId1" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accountId1'].touched && form.controls['accountId1'].hasError('required')">
+                                    AccountId1 is required! </span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>AccountId2</label>
+                                <input class="form-control" formControlName="accountId2" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accountId2'].touched && form.controls['accountId2'].hasError('required')">
+                                    AccountId1 is required! </span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>AccountId3</label>
+                                <input class="form-control" formControlName="accountId3" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accountId3'].touched && form.controls['accountId3'].hasError('required')">
+                                    AccountId1 is required! </span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                   
+                                    Save
+                                </button>
+                                <a routerLink="" class="btn btn-link">Cancel</a>
+                            </div>
+
+                        
+
+                        </div>
+        
+                  
+                  
+                    </div>
+                </div>
+
+            </form>       
+                    
+
+            
+        </div>
+    
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

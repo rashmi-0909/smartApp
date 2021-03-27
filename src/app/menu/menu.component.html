@@ -1,0 +1,86 @@
+<!-- new menu -->
+
+
+<ul ngbNav #nav="ngbNav" [activeId]="2"   class="nav-pills justify-content-center">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Home</a>
+    
+  </li>
+  
+  <li ngbDropdown class="nav-item">
+    <a href (click)="false" class="nav-link" ngbDropdownToggle>Accounting</a>
+    
+       <div ngbDropdownMenu>
+      <button ngbDropdownItem>>Bank Receipts</button>                                                        
+      <button ngbDropdownItem>Bank Payments</button>
+      <div class="dropdown-divider"></div>
+      <button ngbDropdownItem>Cash Receipts</button>
+      <button ngbDropdownItem>Cash Payments</button>
+      <div class="dropdown-divider"></div>
+      <button ngbDropdownItem>Sales</button>
+      <button ngbDropdownItem>Purchases</button>
+      <div class="dropdown-divider"></div>
+      <button ngbDropdownItem> Debit Notes</button>
+      <button ngbDropdownItem>Credit Notes</button>
+    </div>
+  </li>
+
+    <li ngbDropdown class="nav-item">
+    <a href (click)="false" class="nav-link" ngbDropdownToggle> Configuration</a>
+  
+         <div ngbDropdownMenu>
+      <a ngbDropdownItem routerLink="/showcgst">C.G.S.T</a>                                                        
+      <button ngbDropdownItem routerLink="/showsgst">S.G.S.T</button>
+      <button ngbDropdownItem routerLink="/showigst">I.G.S.T</button>
+      <div class="dropdown-divider"></div>
+      <button ngbDropdownItem>Cash Payments</button>
+        <button ngbDropdownItem routerLink="/accountmaster" >ACCOUNTS</button>
+      <div class="dropdown-divider"></div>
+      <button ngbDropdownItem routerLink="/showusers" >USERS</button>
+      <div class="dropdown-divider"></div>
+      <button ngbDropdownItem> Voucher Number</button>
+      <button ngbDropdownItem>Configure Help</button>
+      <button ngbDropdownItem routerLink="/showcompany">Companies</button>
+      <button ngbDropdownItem>Bills</button>
+    </div>
+  </li>
+
+  <li ngbDropdown class="nav-item">
+    <a href (click)="false" class="nav-link" ngbDropdownToggle>  Reports</a>
+     <div ngbDropdownMenu>
+      <button ngbDropdownItem>  Profit and Loss</button>                                                        
+      <button ngbDropdownItem>Sales Register</button>
+      <button ngbDropdownItem>Purchase Register</button>
+      <button ngbDropdownItem>Trial Balance</button>
+        <button ngbDropdownItem>   General Ledger</button>
+      <button ngbDropdownItem>Change Company</button>
+      <button ngbDropdownItem>  Change Financial Year</button>
+      
+    </div>
+  </li>
+    <li ngbDropdown class="nav-item">
+      <a href (click)="false" class="nav-link" ngbDropdownToggle> Profile</a>
+       <div ngbDropdownMenu>
+        <button ngbDropdownItem>   Document</button>                                                        
+        <button ngbDropdownItem>Support</button>
+        <button ngbDropdownItem>Edit User</button>
+        </div>
+    </li>
+   
+    <li [ngbNavItem]="1">
+      <a ngbNavLink (click)="logout()" >LogOut</a>
+      
+    </li>
+    
+ 
+<!-- 
+  <li ngbNavItem [disabled]="true" class="ml-auto">
+    <a ngbNavLink>Disabled</a>
+    
+  </li> -->
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+<router-outlet></router-outlet>
+

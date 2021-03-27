@@ -1,0 +1,76 @@
+
+<div class="container ">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="container-fluid">
+          <h3 *ngIf="isAddMode">Add User</h3>
+          <h3 *ngIf="!isAddMode">Edit User </h3>
+        </div>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+  
+          <div class="form-row  ">
+          
+  
+            <label>CompCode</label>
+               
+            <select formControlName="compCode"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.compCode.errors }">
+              <option disabled>Select CompanyCode</option>
+              <!-- <option>Choose Company</option> -->
+              <option *ngFor="let company of companyList">{{company.compCode}}</option>
+          </select>
+          <div *ngIf="f.compCode.touched && f.compCode.invalid" class="alert alert-danger">
+              <div *ngIf="f.compCode.errors.required">CompCode is required.</div>
+          </div>
+
+
+
+             <!-- <input type="text" [readonly]="!isAddMode" formControlName="compCode" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.compCode.errors }" /> 
+            <div *ngIf="submitted && f.compCode.errors" class="invalid-feedback">
+              <div *ngIf="f.compCode.errors.required">compCode in digit form is required.</div>
+             
+            </div>  -->
+            
+          </div>
+  
+  
+          <div class="form-row ">
+            <label>User Name</label>
+            <input type="text" formControlName="userName" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+              <div *ngIf="f.userName.errors.required">userName is required</div>
+            </div>
+          </div>
+          <div class="form-row ">
+            <label>User EmailId</label>
+            <input type="email" formControlName="userEmailId" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.userEmailId.errors }" />
+            <div *ngIf="submitted && f.userEmailId.errors" class="invalid-feedback">
+              <div *ngIf="f.userEmailId.errors.required">EmailId is required</div>
+            </div>
+          </div>
+  
+          <div class="form-row ">
+            <label>User Password</label>
+            <input type="password" formControlName="userPassword" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.userPassword.errors }" />
+            <div *ngIf="submitted && f.userPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.userPassword.errors.required">Password is required</div>
+            </div>
+          </div>
+  
+  
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+              <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+              Save
+            </button>
+            <a routerLink="/showusers" class="btn btn-link">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

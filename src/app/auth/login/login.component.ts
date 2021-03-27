@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -32,9 +33,8 @@ export class LoginComponent implements OnInit {
 
   initForm(): void {
     this.loginForm = this.fb.group({
-      UserEmailId: ['', [Validators.required,
-      Validators.pattern('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$')]],
-      Userpassword: ['', Validators.required]
+      UserName: ['',Validators.required,],
+      UserPassword: ['', Validators.required]
     });
   }
 
@@ -44,18 +44,21 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    
-    console.log(this.loginForm.value);
-      this.errors = [];
-      this.auth.login(this.loginForm.value)
-        .subscribe((token) => {
-          this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
-         },
-          (errorResponse) => {
-            this.errors.push(errorResponse.error.error);
-          });
-    }
+    this.errors = [];
+    this.auth.login(this.loginForm.value)
+      .subscribe((token) => {
+        // this.router.navigateByUrl(('/header'), { queryParams: { loggedin: 'success' } });
 
+        this.router.navigateByUrl(('/header'));
+       },
+      err => {
+          if(err.status==400)
+           console.log('incorrect username and password');
+           else
+           console.log(err);
+          
+        });
+  }
 
 
   }

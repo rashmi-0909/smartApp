@@ -1,0 +1,51 @@
+
+<div class="container">
+    <div  class="float-right" >
+    <a routerLink="/addcompany" class="btn btn-sm btn-success mb-2">Add Company Entry</a>   
+    </div>    
+        
+    <table class="table table-striped" style="margin-top: 150px;">
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col"  sortable="CompCode">CompCode</th>
+                <th scope="col" sortable="accYear">AccYear</th>
+                <th scope="col" sortable="name">Name</th>
+                <th scope="col" sortable="yearBegin">YearBegin</th>
+                <th scope="col" sortable="yearEnd">YearEnd</th>
+                <th scope="col" sortable="taxId">TaxId</th>
+                <th scope="col" sortable="autoVoucher">AutoVoucher</th>
+                <th scope="col" sortable="billMatch">BillMatch</th> 
+                <th scope="col" sortable="address">Address</th> 
+
+
+                <th scope="col" sortable="Action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let company of companies">
+                <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                <td>{{ company.compCode }}</td>
+                <td>{{ company.accYear}}</td>
+                <td>{{ company.name }}</td>
+                <td>{{ company.yearBegin}}</td>
+                <td>{{ company.yearEnd }}</td>
+                <td>{{ company.taxId}}</td>
+                <td>{{ company.autoVoucher }}</td>
+                <td>{{ company.billMatch}}</td>
+                <td>{{ company.address }}</td>
+                
+                <td>
+                    <a routerLink="edit/{{company.compCode}}"> <button class="btn btn-link text-gray-light" ng-click="gotocompanyDetails('showcompany/edit',company.compCode">Edit</button></a> &nbsp;
+                    <button (click)="deleteCompany(company.compCode)"class="btn btn-danger" [disabled]="isDeleting">
+                        <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!isDeleting">Delete</span>
+                    </button>
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <a [routerLink]="['/product',product.id]"></a> -->

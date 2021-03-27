@@ -1,4 +1,6 @@
 
+
+
 <div class="container">
   <div class="row">
     <div class="col-md-5">
@@ -13,30 +15,26 @@
                 {{ error }}
             </p>
           </div>
-          <label for="UserUserEmailIdId">UserEmailId</label>
-          <input type="email"
+          <label for="UserName">UserName</label>
+          <input type="text"
                  class="form-control"
-                 formControlName="UserEmailId">
+                 formControlName="UserName">
         </div>
-        <div *ngIf="isValidInput('UserEmailId')"
+        <div *ngIf="isValidInput('UserName')"
           class="alert alert-danger">
-          <div *ngIf="loginForm.controls['UserEmailId'].errors.required">
-            UserEmailId is required.
+          <div *ngIf="loginForm.controls['UserName'].errors.required">
+            Userpassword is required.
           </div>
-          <div *ngIf="loginForm.controls['UserEmailId'].errors.pattern">
-            Must be a valid UserEmailId format.
-          </div>
-        </div>
-
+      </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password"
                  class="form-control"
-                 formControlName ="Userpassword">
+                 formControlName ="UserPassword">
         </div>
-        <div *ngIf="isValidInput('Userpassword')"
+        <div *ngIf="isValidInput('UserPassword')"
           class="alert alert-danger">
-          <div *ngIf="loginForm.controls['Userpassword'].errors.required">
+          <div *ngIf="loginForm.controls['UserPassword'].errors.required">
             Userpassword is required.
           </div>
         </div>

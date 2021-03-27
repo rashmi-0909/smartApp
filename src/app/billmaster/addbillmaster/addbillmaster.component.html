@@ -1,0 +1,127 @@
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- <div class="container-fluid">
+                <h3 *ngIf="isAddMode">Add Account</h3>
+                <h3 *ngIf="!isAddMode">Edit Account </h3>
+            </div> -->
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+                <div class="card">
+                    <div class="card-header">Bill Master</div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="form-group col-6">
+                                <label>CompCode</label>
+
+                                <select formControlName="compCode" class="form-control">
+                                    <option >Select CompanyCode</option>
+                                   
+                                    <option *ngFor="let company of companies">{{company.compCode}}</option>
+                                </select>
+                          
+                                <span class="text-danger"
+                                    *ngIf="form.controls['compCode'].touched && form.controls['compCode'].hasError('required')">
+                                    CompCode is required! </span>
+
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Accounting Year</label>
+
+                                <select formControlName="accYear" class="form-control">
+                                    <option >Select Accounting Year</option>
+                                   
+                                    <option *ngFor="let company of companies">{{company.accYear}}</option>
+                                </select>
+                              
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accYear'].touched && form.controls['accYear'].hasError('required')">
+                                    Accounting Year is required! </span>
+
+                            </div>
+
+
+                            <div class="form-group col-6">
+                                <label>Bill Id</label>
+                                <input class="form-control" formControlName="billId" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['billId'].touched && form.controls['billId'].hasError('required')">
+                                   Transaction Credit is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>AccountId</label>
+                                <input class="form-control" formControlName="accountId" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accountId'].touched && form.controls['accountId'].hasError('required')">
+                                   AccountId  required! </span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>billDate</label>
+                                <input class="form-control" formControlName="billDate" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['billDate'].touched && form.controls['billDate'].hasError('required')">
+                                    billDate is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Amount</label>
+                                <input class="form-control" formControlName="amount" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['amount'].touched && form.controls['amount'].hasError('required')">
+                                   Amount is required! </span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Adjusted</label>
+                                <input class="form-control" formControlName="adjusted" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['adjusted'].touched && form.controls['adjusted'].hasError('required')">
+                                   adjusted amount is required! </span>
+                            </div>
+
+
+
+
+
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                   
+                                    Save
+                                </button>
+                                <a routerLink="" class="btn btn-link">Cancel</a>
+                            </div>
+
+                        
+
+                        </div>
+        
+                  
+                  
+                    </div>
+                </div>
+
+            </form>       
+                    
+
+            
+        </div>
+    
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -24,14 +24,17 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -69,13 +72,10 @@
           "options": {
             "browserTarget": "smartApp:build",
             "proxyConfig": "src/proxy.conf.json"
-
-            
           },
           "configurations": {
             "production": {
               "browserTarget": "smartApp:build:production"
-              
             }
           }
         },
@@ -97,9 +97,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-            ],
-            "scripts": []
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+            ]
           }
         },
         "lint": {
@@ -120,7 +120,6 @@
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
             "devServerTarget": "smartApp:serve"
-
           },
           "configurations": {
             "production": {

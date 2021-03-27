@@ -1,0 +1,52 @@
+<div class="container ">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="container-fluid">
+                <h3 *ngIf="isAddMode">Add IGST</h3>
+                <h3 *ngIf="!isAddMode">Edit IGST </h3>
+            </div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+        
+        <div   class="form-row  " >
+            <!-- <ng-container *ngif="show" > -->
+            
+            <label  >IgstId</label>
+            <input type="text" [readonly]="!isAddMode" formControlName="igstId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.igstId.errors }" />
+            <div *ngIf="submitted && f.igstId.errors" class="invalid-feedback">
+                <div *ngIf="f.igstId.errors.required">IgstId in digit form  is required.</div>
+                <div *ngIf="f.igstId.errors.pattern">IgstId in number form only </div>
+            </div>
+            <!-- </ng-container> -->
+        </div>
+
+        
+        <div class="form-row ">
+            <label>igst Detail</label>
+            <input type="text" formControlName="igstDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.igstDetail.errors }" />
+            <div *ngIf="submitted && f.igstDetail.errors" class="invalid-feedback">
+                <div *ngIf="f.igstDetail.errors.required">IgstDetail is required</div>
+            </div>
+        </div>
+
+        <div class="form-row ">
+          <label>igst Rate</label>
+          <input type="text" formControlName="igstRate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.igstRate.errors }" />
+          <div *ngIf="submitted && f.igstRate.errors" class="invalid-feedback">
+              <div *ngIf="f.igstRate.errors.required">IgstDetail is required</div>
+          </div>
+      </div>
+    
+    
+    <div class="form-group">
+        <button  type="submit"  class="btn btn-primary">
+            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+            Save
+        </button>
+        <a routerLink="/showigst" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+</div>
+</div>
+</div>

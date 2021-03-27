@@ -1,0 +1,134 @@
+<div class="container p-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- <div class="container-fluid">
+                <h3 *ngIf="isAddMode">Add Account</h3>
+                <h3 *ngIf="!isAddMode">Edit Account </h3>
+            </div> -->
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+                <div class="card">
+                    <div class="card-header">Account Information</div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="form-group col-6">
+                                <label>CompCode</label>
+
+                                <select formControlName="compCode" class="form-control">
+                                    <option >Select CompanyCode</option>
+                                   
+                                    <option *ngFor="let company of companies">{{company.compCode}}</option>
+                                </select>
+                          
+                                <span class="text-danger"
+                                    *ngIf="form.controls['compCode'].touched && form.controls['compCode'].hasError('required')">
+                                    CompCode is required! </span>
+
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Accounting Year</label>
+
+                                <select formControlName="accYear" class="form-control">
+                                    <option >Select Accounting Year</option>
+                                   
+                                    <option *ngFor="let company of companies">{{company.accYear}}</option>
+                                </select>
+                              
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accYear'].touched && form.controls['accYear'].hasError('required')">
+                                    Accounting Year is required! </span>
+
+                            </div>
+
+
+                            <div class="form-group col-6">
+                                <label>Account Id</label>
+                                <input class="form-control" formControlName="accountId" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accountId'].touched && form.controls['accountId'].hasError('required')">
+                                    AccountId is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Name</label>
+                                <input class="form-control" formControlName="name" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['name'].touched && form.controls['name'].hasError('required')">
+                                    Account Name is required! </span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Opening</label>
+                                <input class="form-control" formControlName="opening" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['opening'].touched && form.controls['opening'].hasError('required')">
+                                    Opening is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>CurrentDebit</label>
+                                <input class="form-control" formControlName="curDr" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['curDr'].touched && form.controls['curDr'].hasError('required')">
+                                    Current Debit is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>CurrentCredit</label>
+                                <input class="form-control" formControlName="curCr" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['curCr'].touched && form.controls['curCr'].hasError('required')">
+                                    Current Credit is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Closing</label>
+                                <input class="form-control" formControlName="closing" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['closing'].touched && form.controls['closing'].hasError('required')">
+                                    Closing is required! </span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                   
+                                    Save
+                                </button>
+                                <a routerLink="/showaccount" class="btn btn-link">Cancel</a>
+                            </div>
+
+                        
+
+                        </div>
+        
+                  
+                  
+                    </div>
+                </div>
+
+            </form>       
+                    
+
+            
+        </div>
+    
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
