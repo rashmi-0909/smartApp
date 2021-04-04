@@ -14,31 +14,34 @@
 
                             <div class="form-group col-6">
                                 <label>CompCode</label>
-
-                                <select formControlName="compCode" class="form-control">
+                                <input class="form-control" formControlName="compCode"  type="text">
+                                <!-- <select formControlName="compCode" class="form-control">
                                     <option >Select CompanyCode</option>
                                    
                                     <option *ngFor="let company of companies">{{company.compCode}}</option>
-                                </select>
+                                </select> -->
                           
-                                <span class="text-danger"
+                                <!-- <span class="text-danger"
                                     *ngIf="form.controls['compCode'].touched && form.controls['compCode'].hasError('required')">
-                                    CompCode is required! </span>
+                                    CompCode is required! </span> -->
 
                             </div>
 
                             <div class="form-group col-6">
                                 <label>Accounting Year</label>
 
-                                <select formControlName="accYear" class="form-control">
+                                <!-- <select formControlName="accYear" class="form-control">
                                     <option >Select Accounting Year</option>
                                    
                                     <option *ngFor="let company of companies">{{company.accYear}}</option>
-                                </select>
+                                </select> -->
+
+                                <input class="form-control" formControlName="accYear"  type="text">
+
                               
-                                <span class="text-danger"
+                                <!-- <span class="text-danger"
                                     *ngIf="form.controls['accYear'].touched && form.controls['accYear'].hasError('required')">
-                                    Accounting Year is required! </span>
+                                    Accounting Year is required! </span> -->
 
                             </div>
 

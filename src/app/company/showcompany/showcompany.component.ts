@@ -19,6 +19,7 @@ export class ShowcompanyComponent implements OnInit {
   companies: CompanyModel[];
   isDeleting:boolean= false;
   compCode:CompanyModel;
+ 
   constructor(private companyService: CompanyService ,private router:Router) { }
 
   ngOnInit(): void {
@@ -50,6 +51,17 @@ export class ShowcompanyComponent implements OnInit {
       }
     });
   }
+
+  selctCompany(accYear:string,compCode:string)
+  {   console.log('hello');
+    localStorage.setItem('AccYear',accYear);
+     localStorage.setItem('CompCode',compCode);
+    this.router.navigateByUrl('dashboard');
+      
+  }
+
+
+
   
 
 }

@@ -22,6 +22,9 @@ export class TransactionmasterComponent implements OnInit {
    trxId:TransactionMasterModel;
    pagination: Pagination;
    transactionmasterParams: TransactionmasterParams;
+
+
+
    sortByList = [{ value: 'trxId', display: 'Id' }, { value: 'drCr', display: 'Debit/Credit' }, { value: 'trxDetail', display: 'Transaction Detail' },
    { value: 'accountId1', display: 'AccountId1' },
    { value: 'accountId2', display: 'AccountId2' },
@@ -29,6 +32,7 @@ export class TransactionmasterComponent implements OnInit {
    pageSizes = [{ value: '10', display: '10' }, { value: '20', display: '20' }, { value: '50', display: '50' }];
     isDeleting:boolean= false;
  
+    
    constructor(private transactionService: TransactionmasterService ,private router:Router) {
      this.transactionmasterParams = new TransactionmasterParams();
     }

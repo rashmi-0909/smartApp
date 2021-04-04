@@ -30,7 +30,7 @@ export class AccountmasterService {
 
 
   getAllAccountMaster(accountmasterParams: AccountmasterParams)  {
-   
+    debugger;
     let params = this.getPaginationHeaders(accountmasterParams.pageNumber, accountmasterParams.pageSize);
     params = params.append('orderBy', accountmasterParams.orderBy);
     return this.getPaginatedResult<AccountMasterModel[]>(this.baseUrl+'/AccountMaster/GetAllByPage', params);
@@ -43,6 +43,7 @@ export class AccountmasterService {
     let params = new HttpParams();
     params = params.append('pageNumber', pageNumber.toString());
     params = params.append('pageSize', pageSize.toString());
+   
     return params;
   }
 

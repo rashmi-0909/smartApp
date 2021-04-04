@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+accountingYear:string;
+companyCode:string;
   constructor() { }
 
   ngOnInit(): void {
+   this.accountingYear= localStorage.getItem('AccYear');
+  //  this.companyCode=localStorage.getItem('compCode');
   }
 
 }

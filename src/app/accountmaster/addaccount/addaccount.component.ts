@@ -23,7 +23,8 @@ export class AddaccountComponent implements OnInit {
   public show:boolean = true;
   companies:CompanyModel[];
   form: FormGroup;
- 
+ compCode1:string;
+ accYear1:string;
   // isAddMode!: boolean;
   // loading = false;
   submitted = false;
@@ -39,13 +40,12 @@ export class AddaccountComponent implements OnInit {
     private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
-  
-
+   
     // this.cgstId= this.route.snapshot.params['cgstId'];
     // this.isAddMode = !this.cgstId;   
         this.form = this.formBuilder.group({
-          compCode: ['', Validators.required],
-          accYear: ['', Validators.required],
+          // compCode: ['', Validators.required],
+          // accYear: ['', Validators.required],
           accountId: ['', Validators.required],
           name: ['', Validators.required],
           opening: ['', Validators.required],
@@ -55,8 +55,18 @@ export class AddaccountComponent implements OnInit {
           closing: ['', Validators.required],
          
       });
+      debugger;
+      this.accYear1= localStorage.getItem('AccYear').toString();
+      this.compCode1=  localStorage.getItem('CompCode').toString();
+      console.log(this.accYear1);
+      console.log(this.compCode1);
+      this.form.get("accYear").setValue(this.accYear1);
+      this.form.get("compCode").setValue(this.compCode1);
+
+
+
         console.log(this.form);
-        this.loadCompanyList();
+        // this.loadCompanyList();
         
     //   if(!this.isAddMode) {
 
@@ -77,13 +87,13 @@ export class AddaccountComponent implements OnInit {
 
   }
 
-  loadCompanyList() {
-    this.companyService.getAllCompany().subscribe(companyList => {
+  // loadCompanyList() {
+  //   this.companyService.getAllCompany().subscribe(companyList => {
    
-      this.companies = companyList;
+  //     this.companies = companyList;
       
-    })
-  }
+  //   })
+  // }
 
   get f() { return this.form.controls; }
 

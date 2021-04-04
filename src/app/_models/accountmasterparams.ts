@@ -1,8 +1,30 @@
 export class AccountmasterParams {
-   compCode: "";
-    accYear:"";
-    pageSize: 10;
-    pageNumber: 1;
-    searchBy: "";
-	orderBy:"name";
+    pageNumber = 1;
+    pageSize = 10;
+    orderBy = 'name';
+    
+    compCode='';
+    accYear='';
+	
+    constructor(
+        compCode: string,
+        accYear: string,
+        
+    ) 
+    {
+        this.compCode = compCode;
+        this.accYear = accYear;
+       
+    }
+        
+    
 }
+
+
+
+
+
+
+
+
+
