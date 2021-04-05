@@ -15,6 +15,7 @@ export class NavComponent implements OnInit {
   model: any = {}
   //loggedIn: boolean;
   currentUser$: Observable<UserModel>;
+  
  //public loggedInUser:any;
 
   constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
@@ -29,8 +30,9 @@ export class NavComponent implements OnInit {
     console.log(this.model)
     this.accountService.login(this.model).subscribe(response => {
       console.log(response);
+   
      // this.loggedInUser=response;
-      this.router.navigateByUrl('dashboard');
+      this.router.navigateByUrl('showcompany');
       //this.router.navigateByUrl('cgstadd');
       //this.loggedIn = true;
     }, error => {

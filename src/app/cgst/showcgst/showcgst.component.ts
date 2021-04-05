@@ -26,6 +26,7 @@ export class ShowcgstComponent implements OnInit {
    isDeleting:boolean= false;
 
   constructor(private cgstService: CgstService ,private router:Router) {
+    debugger;
     this.cgstParams = new CgstParams();
    }
 

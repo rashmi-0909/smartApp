@@ -7,7 +7,7 @@
         <ul class="navbar-nav mr-auto">
             <ng-container *ngIf="accountService.currnentUser$ | async">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/cgst" routerLinkActive="active">Vouchers</a>
+                    <a class="nav-link" routerLink="" routerLinkActive="active">Vouchers</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" (click)="enableMenu()" routerLink="menu" routerLinkActive="active">Masters</a>
@@ -22,7 +22,7 @@
         </ul>
 
         <div class="dropdown" *ngIf="(accountService.currnentUser$ | async) as user" dropdown>
-            <a class="dropdown-togger text-light" dropdownToggle>Welcome </a>
+            <a class="dropdown-togger text-light" dropdownToggle>Welcome  </a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
                 <a class="dropdown-item">Edit profile</a>
                 <div class="dropdown-divider"></div>

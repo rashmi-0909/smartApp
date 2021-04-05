@@ -1,5 +1,5 @@
-
-<div class="container">
+<app-menu></app-menu>
+<div class="container mt-6">
     <div  class="float-right" >
     <a routerLink="/addcompany" class="btn btn-sm btn-success mb-2">Add Company Entry</a>   
     </div>    
@@ -36,12 +36,12 @@
                 <td>{{ company.address }}</td>
                 
                 <td>
-                    <a routerLink="edit/{{company.compCode}}"> <button class="btn btn-link text-gray-light" ng-click="gotocompanyDetails('showcompany/edit',company.compCode">Edit</button></a> &nbsp;
+                    <a routerLink="edit/{{company.compCode}}"> <button class="btn btn-link text-gray-light" ng-click="gotocompanyDetails('showcompany/edit',company.compCode)">Edit</button></a> &nbsp;
                     <button (click)="deleteCompany(company.compCode)"class="btn btn-danger" [disabled]="isDeleting">
                         <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
                         <span *ngIf="!isDeleting">Delete</span>
                     </button>
-
+                    <a  routerLink="/dashboard"   > <button class="btn btn-link text-gray-light" (click)="selctCompany(company.accYear,company.compCode)">Select Company</button></a>
 
                 </td>
             </tr>

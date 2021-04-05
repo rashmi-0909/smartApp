@@ -44,7 +44,7 @@ export class CgstService {
 
 
   private getPaginationHeaders(pageNumber: number, pageSize: number) {
-    //debugger;
+    // debugger;
     let params = new HttpParams();
     params = params.append('pageNumber', pageNumber.toString());
     params = params.append('pageSize', pageSize.toString());
