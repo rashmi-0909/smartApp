@@ -9,7 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 // import { AuthModule } from './auth/auth.module';
 import { RouterModule } from '@angular/router';
-import{AuthModule}from './auth/auth.module';
+
 import{HttpClientModule,HttpHeaders}from '@angular/common/http';
 import{FormsModule,ReactiveFormsModule}from'@angular/forms';
 import { CgstComponent } from './cgst/cgst.component';
@@ -23,9 +23,7 @@ import{IgstListComponent}from'src/app/igst/igst-list.component';
 import { SgstComponent } from './sgst/sgst.component';
 import { ShowsgstComponent } from './sgst/showsgst/showsgst.component';
 import { AddsgstComponent } from './sgst/addsgst/addsgst.component';
-import { TopnavComponent } from './mastertheme/topnav/topnav.component';
-import { AsidenavComponent } from './mastertheme/asidenav/asidenav.component';
-import { FooterComponent } from './mastertheme/footer/footer.component';
+
 import { CompanyComponent } from './company/company.component';
 import { AddcompanyComponent } from './company/addcompany/addcompany.component';
 import { ShowcompanyComponent } from './company/showcompany/showcompany.component';
@@ -70,9 +68,7 @@ import { AddbillmasterComponent } from './billmaster/addbillmaster/addbillmaster
     SgstComponent,
     ShowsgstComponent,
     AddsgstComponent,
-    TopnavComponent,
-    AsidenavComponent,
-    FooterComponent,
+    
     CompanyComponent,
     AddcompanyComponent,
     ShowcompanyComponent,

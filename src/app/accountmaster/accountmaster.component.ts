@@ -40,8 +40,8 @@ export class AccountmasterComponent implements OnInit {
     { value: 'accountId', display: 'AccountId' },
     { value: 'name', display: 'AccountName' },
     { value: 'opening', display: 'Operning Balance' },
-    { value: 'curDr', display: 'Current Debit' },
-    { value: 'curCr', display: 'Current Credit' },
+    // { value: 'curDr', display: 'Current Debit' },
+    // { value: 'curCr', display: 'Current Credit' },
     { value: 'closing', display: 'Closing Balance' }
 
   ];
