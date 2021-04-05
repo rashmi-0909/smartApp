@@ -29,19 +29,26 @@ export class ShowusersComponent implements OnInit {
       this.users = userList;
     })
   }
-  deleteuser(userName:string) {
-      debugger;
-    const user = this.users.find(x => x.userName ===userName);
-   debugger;
-    if (!user) return;
-    this.isDeleting = true;
-    //  debugger;
-     this.accountservice.deleteUser(userName);
-      // .pipe(first())
-        // .subscribe(() => this.users = this.users.filter(x => x.userName !== userName));
-        this.router.navigateByUrl('menu');
-         debugger;
+//   deleteuser(userName:string) {
+//       debugger;
+//     const user = this.users.find(x => x.userName ===userName);
+//    debugger;
+//     if (!user) return;
+//     this.isDeleting = true;
+//     //  debugger;
+//      this.accountservice.deleteUser(userName);
+//       // .pipe(first())
+//         // .subscribe(() => this.users = this.users.filter(x => x.userName !== userName));
+//         this.router.navigateByUrl('menu');
+//          debugger;
+// }
+deleteuser(userName:string)
+{
+  this.accountservice.deleteUser(userName).subscribe(res=>{
+    this.loadUsersList();
+  });
 }
+
   gotoUserDetails(url, userName:string){
     var myurl = `${url}/${userName}`;
     console.log(myurl);

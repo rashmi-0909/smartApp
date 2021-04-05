@@ -6,6 +6,7 @@ import { ServiceResponseModel } from '../_models/serviceresponsemodel';
  import { ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Observable, throwError } from "rxjs";
+import { userInfo } from 'node:os';
 
 @Injectable({
   providedIn: 'root'
@@ -87,17 +88,19 @@ editUser(userData:UserModel){
   return this.http.put<UserModel>(this.baseUrl+'/User/Edit',userData);
 }
 
-deleteUser(userName:string){
-  const headers = new HttpHeaders()
-  .set('Content-Type', 'application/json')
+// deleteUser(userName:string){
+//   const headers = new HttpHeaders()
+//   .set('Content-Type', 'application/json')
 
 
-  let body = {
-    userName: userName,
+//   let body = {
+//     userName: userName,
    
-};
+// };
 
-this.http.request('delete', this.baseUrl+'/User/Delete', {headers:headers,body:body});
+deleteUser(userName:string){
+return this.http.delete(this.baseUrl+'/User/Delete?userName=' + userName);
+};
 
 // this.http.request('http://testAPI:3000/stuff', options)
   // const headers = new HttpHeaders()
@@ -132,7 +135,7 @@ this.http.request('delete', this.baseUrl+'/User/Delete', {headers:headers,body:b
            
 //try2end
 
-}
+// }
 /*
 let headers = new Headers();
 headers.append('Content-Type','application/json');
