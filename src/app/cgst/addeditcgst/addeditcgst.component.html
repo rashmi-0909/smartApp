@@ -1,0 +1,52 @@
+<div class="container ">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="container-fluid">
+                <h3 *ngIf="isAddMode">Add CGST</h3>
+                <h3 *ngIf="!isAddMode">Edit CGST </h3>
+            </div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+        
+        <div   class="form-row  " >
+            <!-- <ng-container *ngif="show" > -->
+            
+            <label  >CgstId</label>
+            <input type="text" [readonly]="!isAddMode" formControlName="cgstId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cgstId.errors }" />
+            <div *ngIf="submitted && f.cgstId.errors" class="invalid-feedback">
+                <div *ngIf="f.cgstId.errors.required">cgstId in digit form  is required.</div>
+                <div *ngIf="f.cgstId.errors.pattern">CgstId in number form only </div>
+            </div>
+            <!-- </ng-container> -->
+        </div>
+
+        
+        <div class="form-row ">
+            <label>Cgst Detail</label>
+            <input type="text" formControlName="cgstDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cgstDetail.errors }" />
+            <div *ngIf="submitted && f.cgstDetail.errors" class="invalid-feedback">
+                <div *ngIf="f.cgstDetail.errors.required">CgstDetail is required</div>
+            </div>
+        </div>
+
+        <div class="form-row ">
+          <label>Cgst Rate</label>
+          <input type="text" formControlName="cgstRate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cgstRate.errors }" />
+          <div *ngIf="submitted && f.cgstRate.errors" class="invalid-feedback">
+              <div *ngIf="f.cgstRate.errors.required">CgstDetail is required</div>
+          </div>
+      </div>
+    
+    
+    <div class="form-group">
+        <button  type="submit"  class="btn btn-primary">
+            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+            Save
+        </button>
+        <a routerLink="/showcgst" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+</div>
+</div>
+</div>

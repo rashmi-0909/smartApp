@@ -1,0 +1,97 @@
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a routerLink="/dashboard">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">CGST</li>
+    </ol>
+  </nav>
+  
+ 
+  
+  
+  
+<!-- <div class="container">
+    <div  class="float-right" >
+    <a routerLink="/addcgst" class="btn btn-sm btn-success mb-2">Add CGST Entry</a>   
+    </div>     -->
+    <div class="text-center mt-3">
+        <h2>Central GST - {{pagination?.totalItems}} found</h2>
+    </div>
+    
+    <div class="container mt-3">
+        <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadCgstList()" autocomplete="off">
+            <div class="form-group px-2">
+                <label>Sort By: </label>
+                <!-- <select name="sortBy" style="width: 130px" [(ngModel)]="igstParams.orderBy" class="form-control ml-1">
+                    <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                        {{sortBy.display}}
+                    </option>
+                </select> -->
+                <!-- <select name="sortBy" style="width: 130px" [(ngModel)]="igstParams.orderBy" class="form-control ml-1">
+                    <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                        {{sortBy.display}}
+                    </option>
+                </select> -->
+                <select name="sortBy" style="width: 130px" [(ngModel)]="cgstParams.orderBy" class="form-control ml-1">
+                    <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                        {{sortBy.display}}
+                    </option>
+                </select>
+    
+            </div>
+            <div class="form-group px-2">
+                <label>Page Size: </label>
+                <select name="pageSize" style="width: 130px" [(ngModel)]="cgstParams.pageSize" class="form-control ml-1">
+                    <option *ngFor="let pageSize of pageSizes" [value]="pageSize.value">
+                        {{pageSize.display}}
+                    </option>
+                </select>
+            </div>
+            <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
+            <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset Filters</button>
+            <button (click)="addNewRecord()" class="btn btn-info ml-1" type="submit">New</button>
+        </form>
+    <!-- </div> -->
+
+
+
+        
+    <table class="table table-striped" style="margin-top: 150px;">
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col"  sortable="cgstId">Id</th>
+                <th scope="col" sortable="cgstDetail">Detail</th>
+                <th scope="col" sortable="cgstRate">Rate</th>
+                <th scope="col" sortable="Action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cgst of cgsts">
+                <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                <td>{{ cgst.cgstId }}</td>
+                <td>{{ cgst.cgstDetail}}</td>
+                <td>{{ cgst.cgstRate }}</td>
+                <td>
+                    <a routerLink="edit/{{cgst.cgstId}}"> <button class="btn btn-link text-gray-light" ng-click="gotoCgstDetails('showcgst/edit',cgst.cgstId)">Edit</button></a> &nbsp;
+                    <button (click)="deleteCgst(cgst.cgstId)"class="btn btn-danger" [disabled]="isDeleting">
+                        <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!isDeleting">Delete</span>
+                    </button>
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+</div>
+
+
+<!-- <a [routerLink]="['/product',product.id]"></a> -->

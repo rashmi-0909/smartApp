@@ -1,0 +1,146 @@
+<div class="container ">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-5">
+            <div class="container-fluid">
+                <h3 *ngIf="isAddMode">Add Company</h3>
+                <h3 *ngIf="!isAddMode">Edit Company </h3>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off"   >
+
+                <div class="form-row  ">
+                
+                    <label for="CompCode">CompCode</label>
+                    <input type="text" [readonly]="!isAddMode" class="form-control" formControlName="compCode" name="compCode"
+                        [ngClass]="{ 'is-invalid': submitted && f.compCode.errors }" />
+                    <div *ngIf="submitted && f.compCode.errors" class="invalid-feedback">
+                        <div *ngIf="f.compCode.errors.required">CompCode is required.></div>
+                    </div>
+                </div>
+
+                <div class="form-row  ">
+                    
+                        <label for="Name">Name</label>
+                        
+                            <input type="text" class="form-control" formControlName="name" name="name"
+                            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">name is required.></div>
+
+                        
+                    </div>
+                </div>
+                    <div class="form-row">
+                        <label for="taxId">TaxId</label>
+                        <input type="text" class="form-control" formControlName="taxId" name="taxId"
+                            [ngClass]="{ 'is-invalid': submitted && f.taxId.errors }">
+                        <div *ngIf="submitted && f.taxId.errors" class="invalid-feedback">
+                            <div *ngIf="f.taxId.errors.required"> TaxId is required.></div>
+
+
+
+                        </div>
+                    </div>
+              
+
+
+                <div class="form-group">
+                    <label for="yearEnd">Year End</label>
+                    <input type="text" class="form-control-sm " placeholder="Datepicker" bsDatepicker
+                        formControlName="yearEnd"  />
+                    <div *ngIf="submitted && f.yearEnd.errors && !isValidDate" class="invalid-feedback">
+                        <div *ngIf="f.yearEnd.errors.required && error.isError  ">valid date is required.></div>
+                        <!-- <div *ngIf="error.isError ">{{error.errorMessage}}</div> -->
+                    </div> 
+                    <div class="text-danger" *ngIf="error.isError">{{error.errorMessage}}</div>              
+                    
+                </div>
+
+
+                <div class="form-group">
+                    <label for="yearBegin">Year Begin</label>
+                    <input type="text" class="form-control mb-3" placeholder="Datepicker" bsDatepicker
+                        formControlName="yearBegin"         />
+                    <div *ngIf="submitted && f.yearBegin.errors" class="invalid-feedback">
+                        <div *ngIf="f.yearBegin.errors.required  && error.isError">valid date is required.></div>
+                        <div *ngIf="error.isError ">{{error.errorMessage}}</div>
+                    </div> 
+                   
+                </div>
+                    <div class="form-row">
+
+                        <label for="AccYear">AccYear</label>
+                        <input type="text" class="form-control" formControlName="accYear" name="accYear" 
+                          (click)="setAccYear($event)" [ngClass]="{ 'is-invalid': submitted && f.accYear.errors }" readonly>
+                        <div *ngIf="submitted && f.accYear.errors" class="invalid-feedback">
+                            <div *ngIf="f.accYear.errors.required">accYear is required.></div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-row  ">
+
+                        <div class="form-group col-md-6">
+                            <label for="autoVoucher">AutoVoucher</label>
+                            
+                                <input type="radio" value="Y" name="autoVoucher" formControlName="autoVoucher"
+                                    [ngClass]="{ 'is-invalid': submitted && f.billMatch.errors }">
+                                <label for="Yes">Yes</label>
+                            
+                            <div>
+                                <input type="radio" value="N" name="autoVoucher" formControlName="autoVoucher">
+                                <label for="No">No</label>
+                            </div>
+
+                            <div *ngIf="f.autoVoucher && f.autoVoucher.invalid" class="alert alert-danger">
+                                <div *ngIf="f.autoVoucher.errors.required">Select the Option.</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="billMatch">BillMatch</label>
+                            <div> 
+                                <input type="radio" value="Y" name="billMatch" formControlName="billMatch"
+                                    [ngClass]="{ 'is-invalid': submitted && f.billMatch.errors }">
+                                <label for="Yes">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" value="N" name="billMatch" formControlName="billMatch"
+                                    [ngClass]="{ 'is-invalid': submitted && f.billMatch.errors }">
+                                <label for="No">No</label>
+                            </div>
+
+                            <div *ngIf="f.billMatch && f.billMatch.invalid" class="alert alert-danger">
+                                <div *ngIf="f.billMatch.errors.required">Select the Option.</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row  ">
+                        <div class="form-group col-md-6">
+                            <label for="Address">Address</label>
+                            <textarea class="form-control" rows="3" formControlName="address"
+                                [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
+                            <div *ngIf="f.address && f.address.invalid" class="alert alert-danger">
+                                <div *ngIf="f.address.errors.required">address field is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row  ">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+                                Save
+                            </button>
+                            <a routerLink="/showcompany" class="btn btn-link">Cancel</a>
+                        </div>
+                    </div>
+            </form>
+
+
+        </div>
+
+    </div>
+</div>

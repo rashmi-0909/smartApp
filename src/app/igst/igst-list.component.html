@@ -1,0 +1,90 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a routerLink="/dashboard">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">IGST</li>
+    </ol>
+  </nav>
+
+
+<div class="text-center mt-3">
+    <h2>Integrated GST - {{pagination?.totalItems}} found</h2>
+</div>
+
+<div class="container mt-3">
+    <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadIgstList()" autocomplete="off">
+        <div class="form-group px-2">
+            <label>Sort By: </label>
+            <!-- <select name="sortBy" style="width: 130px" [(ngModel)]="igstParams.orderBy" class="form-control ml-1">
+                <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                    {{sortBy.display}}
+                </option>
+            </select> -->
+            <!-- <select name="sortBy" style="width: 130px" [(ngModel)]="igstParams.orderBy" class="form-control ml-1">
+                <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                    {{sortBy.display}}
+                </option>
+            </select> -->
+            <select name="sortBy" style="width: 130px" [(ngModel)]="igstParams.orderBy" class="form-control ml-1">
+                <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                    {{sortBy.display}}
+                </option>
+            </select>
+
+        </div>
+        <div class="form-group px-2">
+            <label>Page Size: </label>
+            <select name="pageSize" style="width: 130px" [(ngModel)]="igstParams.pageSize" class="form-control ml-1">
+                <option *ngFor="let pageSize of pageSizes" [value]="pageSize.value">
+                    {{pageSize.display}}
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
+        <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset Filters</button>
+        <button (click)="addNewRecord()" class="btn btn-info ml-1" type="submit">New</button>
+    </form>
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Detail</th>
+                <th>Rate</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let igst of igsts">
+                <td>{{ igst.igstId }}</td>
+                <td>{{ igst.igstDetail}}</td>
+                <td>{{ igst.igstRate }}</td>
+                <td>
+                    <!-- <button class="btn btn-primary" routerLink='/igst/{{igst.igstId}}'>Edit</button> &nbsp; -->
+                    <a routerLink="edit/{{igst.igstId}}"> <button class="btn btn-link text-gray-light" ng-click="gotoIgstDetails('showigst/edit',igst.igstId)">Edit</button></a>   
+                    <!-- <button (click)="deleteIgst(igst.igstId)" class="btn btn-danger" [disabled]="isDeleting"></button>
+                    <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span> 
+                        <span *ngIf="!isDeleting">Delete</span> -->
+                    <!-- <button class="btn btn-danger" (click)="deleteRecord()">Delete</button> -->
+
+                    <button (click)="deleteIgst(igst.igstId)"class="btn btn-danger" [disabled]="isDeleting">
+                        <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!isDeleting">Delete</span>
+                    </button>
+
+
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+</div>

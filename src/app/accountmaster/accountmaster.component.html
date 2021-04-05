@@ -1,0 +1,186 @@
+<div class="container">
+    <!-- <div class="text-center mt-3">
+        <h2>Account Master - {{pagination?.totalItems}} found</h2>
+    </div> -->
+
+    <!-- <form [formGroup]="form" class="form-inline mb-3" (ngSubmit)="loadAccountList()" autocomplete="off">
+        <div class="card">
+            <div class="card-header">Account Information</div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label>CompCode:{{compCode1  }}</label>
+                       
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label>Accounting Year:{{accYear1  }}</label>
+                        
+                    </div>
+
+
+                </div>
+
+
+                <div class="container mt-3 row">
+
+                    <div class="form-group col-6 ">
+                        <label>Sort By: </label>
+        
+                        <select name="sortBy" style="width: 130px" formControlName="sortBy"
+                            class="form-control ml-1">
+                            <option *ngFor="let sortBy of sortByList" value="accountmasterParams.orderBy">
+                                {{sortBy.display}}
+                            </option>
+                        </select>
+        
+                    </div>
+                    <div class="form-group col-6 ">
+                        <label>Page Size: </label>
+                        <select name="pageSize" style="width: 130px" formControlName="pageSize"
+                            class="form-control ml-1">
+                            <option *ngFor="let pageSize of pageSizes" value="pageSize.value">
+                                {{pageSize.display}}
+                            </option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
+                    <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset Filters</button>
+                            <button (click)="addNewRecord()" class="btn btn-info ml-1" type="submit">New</button>
+            
+                </div>
+
+            </div>
+        </div>
+
+
+        
+    </form>
+    
+
+
+
+
+
+
+
+ -->
+
+ <div class="text-center mt-3">
+    <h2>Account Master- {{pagination?.totalItems}} found</h2>
+</div>
+
+<div class="row">
+    <div class="form-group col-6">
+        <label>CompCode:{{compCode1  }}</label>
+       
+    </div>
+
+    <div class="form-group col-6">
+        <label>Accounting Year:{{accYear1  }}</label>
+        
+    </div>
+<div class="container mt-3">
+    <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadAccountList()" autocomplete="off">
+        <div class="form-group px-2">
+            <label>Sort By: </label>
+            <!-- <select name="sortBy" style="width: 130px" [(ngModel)]="igstParams.orderBy" class="form-control ml-1">
+                <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                    {{sortBy.display}}
+                </option>
+            </select> -->
+            <!-- <select name="sortBy" style="width: 130px" [(ngModel)]="igstParams.orderBy" class="form-control ml-1">
+                <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                    {{sortBy.display}}
+                </option>
+            </select> -->
+            <select name="sortBy" style="width: 130px" [(ngModel)]="accountmasterParams.orderBy" class="form-control ml-1">
+                <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                    {{sortBy.display}}
+                </option>
+            </select>
+
+        </div>
+        <div class="form-group px-2">
+            <label>Page Size: </label>
+            <select name="pageSize" style="width: 130px" [(ngModel)]="accountmasterParams.pageSize" class="form-control ml-1">
+                <option *ngFor="let pageSize of pageSizes" [value]="pageSize.value">
+                    {{pageSize.display}}
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
+        <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset Filters</button>
+        <button (click)="addNewAccount()" class="btn btn-info ml-1" type="submit">New</button>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="table table-striped" style="margin-top: 150px;">
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <!-- <th scope="col" sortable="CompCode">CompCode</th>
+                <th scope="col" sortable="accYear">AccYear</th> -->
+                <th scope="col" sortable="accountId">AccountId</th>
+                <th scope="col" sortable="name">Account Name</th>
+                <th scope="col" sortable="opening">Opening</th>
+                <th scope="col" sortable="curDr">CurDr</th>
+                <th scope="col" sortable="curCr">CurCr</th>
+                <th scope="col" sortable="closing">Closing</th>
+
+
+                <th scope="col" sortable="Action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of accounts">
+                <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                <td>{{account.compCode }}</td>
+                <td>{{account.accYear}}</td>
+                <td>{{account.accountId }}</td>
+                <td>{{account.name}}</td>
+                <td>{{account.opening }}</td>
+                <td>{{account.curDr}}</td>
+                <td>{{account.curCr }}</td>
+                <td>{{account.closing}}</td>
+
+                <!-- <td>
+                    <a routerLink="edit/{{company.compCode}}"> <button class="btn btn-link text-gray-light" ng-click="gotocompanyDetails('showcompany/edit',company.compCode">Edit</button></a> &nbsp;
+                    <button (click)="deleteCompany(company.compCode)"class="btn btn-danger" [disabled]="isDeleting">
+                        <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!isDeleting">Delete</span>
+                    </button>
+
+
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+</div>
+
+<!-- <a [routerLink]="['/product',product.id]"></a> -->

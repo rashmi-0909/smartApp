@@ -1,0 +1,50 @@
+<div class="container ">
+  <div class="row">
+      <div class="col-md-5">
+          <div class="container-fluid">
+              <h3 *ngIf="isAddMode">Add SGST</h3>
+              <h3 *ngIf="!isAddMode">Edit SGST </h3>
+          </div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+      
+      <div   class="form-row  " >
+          <!-- <ng-container *ngif="show" > -->
+          
+          <label  >SgstId</label>
+          <input type="text" [readonly]="!isAddMode" formControlName="sgstId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sgstId.errors }" />
+          <div *ngIf="submitted && f.sgstId.errors" class="invalid-feedback">
+              <div *ngIf="f.sgstId.errors.required">SgstId in digit form  is required.</div>
+              <div *ngIf="f.sgstId.errors.pattern">SgstId in number form only </div>
+          </div>
+          <!-- </ng-container> -->
+      </div>
+      <div class="form-row ">
+          <label>Sgst Detail</label>
+          <input type="text" formControlName="sgstDetail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sgstDetail.errors }" />
+          <div *ngIf="submitted && f.sgstDetail.errors" class="invalid-feedback">
+              <div *ngIf="f.sgstDetail.errors.required">SgstDetail is required</div>
+          </div>
+      </div>
+
+      <div class="form-row ">
+        <label>Sgst Rate</label>
+        <input type="text" formControlName="sgstRate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sgstRate.errors }" />
+        <div *ngIf="submitted && f.sgstRate.errors" class="invalid-feedback">
+            <div *ngIf="f.sgstRate.errors.required">SgstDetail is required</div>
+        </div>
+    </div>
+  
+  
+  <div class="form-group">
+      <button  type="submit"  class="btn btn-primary">
+          <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+          Save
+      </button>
+      <a routerLink="/showsgst" class="btn btn-link">Cancel</a>
+  </div>
+</form>
+</div>
+</div>
+</div>

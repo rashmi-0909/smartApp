@@ -1,0 +1,115 @@
+<div class="container p-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- <div class="container-fluid">
+                <h3 *ngIf="isAddMode">Add Account</h3>
+                <h3 *ngIf="!isAddMode">Edit Account </h3>
+            </div> -->
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+                <div class="card">
+                    <div class="card-header">Type Master</div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="form-group col-6">
+                                <label>CompCode</label>
+
+                                <select formControlName="compCode" class="form-control">
+                                    <option >Select CompanyCode</option>
+                                   
+                                    <option *ngFor="let company of companies">{{company.compCode}}</option>
+                                </select>
+                          
+                                <span class="text-danger"
+                                    *ngIf="form.controls['compCode'].touched && form.controls['compCode'].hasError('required')">
+                                    CompCode is required! </span>
+
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Accounting Year</label>
+
+                                <select formControlName="accYear" class="form-control">
+                                    <option >Select Accounting Year</option>
+                                   
+                                    <option *ngFor="let company of companies">{{company.accYear}}</option>
+                                </select>
+                              
+                                <span class="text-danger"
+                                    *ngIf="form.controls['accYear'].touched && form.controls['accYear'].hasError('required')">
+                                    Accounting Year is required! </span>
+
+                            </div>
+
+
+                            <div class="form-group col-6">
+                                <label>Trx-CD</label>
+                                <input class="form-control" formControlName="trxCd" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['trxCd'].touched && form.controls['trxCd'].hasError('required')">
+                                   Transaction Credit is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>Transaction Detail</label>
+                                <input class="form-control" formControlName="trxDetail" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['trxDetail'].touched && form.controls['trxDetail'].hasError('required')">
+                                    Transaction Details  required! </span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Prefix</label>
+                                <input class="form-control" formControlName="prefix" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['prefix'].touched && form.controls['prefix'].hasError('required')">
+                                    Prefix is required! </span>
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label>ItemSr.</label>
+                                <input class="form-control" formControlName="itemSr" type="text">
+                                <span class="text-danger"
+                                    *ngIf="form.controls['itemSr'].touched && form.controls['itemSr'].hasError('required')">
+                                   ItemSr is required! </span>
+                            </div>
+
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                   
+                                    Save
+                                </button>
+                                <a routerLink="" class="btn btn-link">Cancel</a>
+                            </div>
+
+                        
+
+                        </div>
+        
+                  
+                  
+                    </div>
+                </div>
+
+            </form>       
+                    
+
+            
+        </div>
+    
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

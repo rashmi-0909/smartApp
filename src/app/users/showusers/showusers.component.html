@@ -1,0 +1,44 @@
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active"><a routerLink="/dashboard">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">USER MANAGEMENT</li>
+    </ol>
+  </nav>
+
+<div class="container">
+    <div  class="float-right" >
+    <a routerLink="/adduser" class="btn btn-sm btn-success mb-2">Register User</a>   
+    </div>    
+        
+    <table class="table table-striped" style="margin-top: 150px;">
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col"  sortable="compCode">compCode</th>
+                <th scope="col" sortable="userName">userName</th>
+                <th scope="col" sortable="userEmailId">userEmailId</th>
+                <th scope="col" sortable="Action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                <td>{{user.compCode }}</td>
+                <td>{{user.userName}}</td>
+                <td>{{user.userEmailId }}</td>
+                <td>
+                    <a routerLink="edit/{{ user.userName }}"> <button class="btn btn-link text-gray-light" ng-click="gotoUserDetails('/showusers/edit',user.userName)">Edit</button></a> &nbsp;
+                    <button (click)="deleteuser(user.userName)"class="btn btn-danger" [disabled]="isDeleting">
+                        <!-- <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span> -->
+                        <!-- <span *ngIf="!isDeleting"</span> -->
+                            Delete
+                    </button>
+                   
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <a [routerLink]="['/product',product.id]"></a> -->

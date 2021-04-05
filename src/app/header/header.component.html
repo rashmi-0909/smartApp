@@ -1,0 +1,24 @@
+
+<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #0f324e;">
+    <div class="container">
+      <a routerLink="/" class="navbar-brand" routerLinkActive="active" >WHP</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <ng-container>
+            <li class="nav-item">
+              <a routerLink="/auth/login" class="nav-link" routerLinkActive="active">
+              Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/adduser" class="nav-link">
+              Register
+              </a>
+            </li>
+           </ng-container>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

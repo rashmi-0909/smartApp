@@ -1,0 +1,34 @@
+<div class="m-3">
+    <p>Central GST : filter and pagination</p>
+    <form>
+        <div class="form-group form-inline">
+            Search by name:
+            <!-- <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="searchTerm"
+          (input)="search($event.target.value)" /> -->
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->
+                <th scope="col" sortable="cgstId">Id</th>
+                <th scope="col" sortable="cgstDetail">Detail</th>
+                <th scope="col" sortable="cgstRate">Rate</th>
+                <th scope="col" sortable="Action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cgst of cgsts">
+                <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                <td>{{ cgst.cgstId }}</td>
+                <td>{{ cgst.cgstDetail}}</td>
+                <td>{{ cgst.cgstRate }}</td>
+                <td>
+                    <button class="btn btn-primary" ng-click="edit(item)">Edit</button> &nbsp;
+                    <button class="btn btn-primary" ng-click="Delete(item)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<router-outlet></router-outlet>
