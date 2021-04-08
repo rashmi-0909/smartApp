@@ -56,7 +56,7 @@ export class AccountmasterComponent implements OnInit {
     
       this.accYear1 = localStorage.getItem('AccYear');
       this.compCode1 = localStorage.getItem('CompCode');
-      debugger;
+     // debugger;
       // this.accountmasterParams = new AccountmasterParams();
       this.accYear1 = localStorage.getItem('AccYear');
       this.compCode1 = localStorage.getItem('CompCode');
@@ -90,7 +90,7 @@ export class AccountmasterComponent implements OnInit {
   //   })
   // }
   loadAccountList() {
-      debugger;
+     // debugger;
     //  this.accountmasterParams.accYear=this.accYear1;
     this.accountmasterService.getAllAccountMaster(this.accountmasterParams).subscribe(response => {
       // debugger;

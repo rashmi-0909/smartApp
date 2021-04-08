@@ -44,8 +44,8 @@ export class AddaccountComponent implements OnInit {
     // this.cgstId= this.route.snapshot.params['cgstId'];
     // this.isAddMode = !this.cgstId;   
         this.form = this.formBuilder.group({
-          // compCode: ['', Validators.required],
-          // accYear: ['', Validators.required],
+           compCode: [localStorage.getItem('CompCode').toString() ],
+           accYear: [localStorage.getItem('AccYear').toString()],
           accountId: ['', Validators.required],
           name: ['', Validators.required],
           opening: ['', Validators.required],

@@ -10,30 +10,21 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
   
   
-          <div class="form-row  ">
+          <!-- <div class="form-row  ">
           
   
             <label>CompCode</label>
                
             <select formControlName="compCode"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.compCode.errors }">
               <option disabled>Select CompanyCode</option>
-              <!-- <option>Choose Company</option> -->
+              
               <option *ngFor="let company of companyList">{{company.compCode}}</option>
           </select>
           <div *ngIf="f.compCode.touched && f.compCode.invalid" class="alert alert-danger">
               <div *ngIf="f.compCode.errors.required">CompCode is required.</div>
           </div>
-
-
-
-             <!-- <input type="text" [readonly]="!isAddMode" formControlName="compCode" class="form-control"
-              [ngClass]="{ 'is-invalid': submitted && f.compCode.errors }" /> 
-            <div *ngIf="submitted && f.compCode.errors" class="invalid-feedback">
-              <div *ngIf="f.compCode.errors.required">compCode in digit form is required.</div>
-             
-            </div>  -->
-            
-          </div>
+                     
+          </div> -->
   
   
           <div class="form-row ">

@@ -33,7 +33,8 @@ export class RegisterUserComponent implements OnInit {
     this.userName= this.route.snapshot.params['userName'];
      this.isAddMode = !this.userName;   
         this.form = this.formBuilder.group({
-          compCode: ['', Validators.required],
+          // compCode: ['', Validators.required],
+          compCode: [localStorage.getItem('CompCode').toString() ],
           userName: ['', Validators.required],
           userEmailId: ['', Validators.required],
           userPassword: ['', Validators.required]
