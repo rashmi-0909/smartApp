@@ -3,3 +3,4 @@ export class CgstParams {
     pageSize = 10;
     orderBy = 'cgstId';
 }
+ 

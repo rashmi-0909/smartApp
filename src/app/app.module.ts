@@ -53,6 +53,9 @@ import { AddtransactionComponent } from './transactionmaster/addtransaction/addt
 import { BillmasterComponent } from './billmaster/billmaster.component';
 import { AddbillmasterComponent } from './billmaster/addbillmaster/addbillmaster.component';
 
+import { HttpInterceptorModule } from './security/http-interceptor.module';
+
+
 
 @NgModule({
   declarations: [
@@ -99,7 +102,8 @@ import { AddbillmasterComponent } from './billmaster/addbillmaster/addbillmaster
   imports: [ RouterModule,
     BrowserModule,
     AppRoutingModule,
-   
+
+   HttpInterceptorModule ,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

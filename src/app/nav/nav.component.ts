@@ -28,14 +28,10 @@ export class NavComponent implements OnInit {
 
   login():void {
     console.log(this.model)
-    this.accountService.login(this.model).subscribe(response => {
-      console.log(response);
-   
-     // this.loggedInUser=response;
-      this.router.navigateByUrl('showcompany');
-      //this.router.navigateByUrl('cgstadd');
-      //this.loggedIn = true;
-    }, error => {
+     this.accountService.login(this.model).subscribe(Response=> {
+      this.router.navigate(['showcompany'], { queryParams: { loggedin: 'success' } });
+     },
+      error => {
       console.log(error);
       this.toastr.error(error);
     })

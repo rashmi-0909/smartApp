@@ -9,15 +9,21 @@ import { CgstParams } from '../_models/cgstparams';
 
 import { Observable, throwError } from "rxjs";
 
-
 import { map } from 'rxjs/operators';
 
 
-const httpOptions = {
-  hearders: new HttpHeaders({
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-  })
-}
+// const httpOptions = {
+//   hearders: new HttpHeaders({
+//     Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
+    
+//   })
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +39,11 @@ export class CgstService {
 
 
   getAllCgst(cgstParams: CgstParams)  {
-   
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
     let params = this.getPaginationHeaders(cgstParams.pageNumber, cgstParams.pageSize);
     params = params.append('orderBy', cgstParams.orderBy);
-    return this.getPaginatedResult<CgstModel[]>(this.baseUrl+'/CgstMaster/GetAllByPage', params);
+    return this.getPaginatedResult<CgstModel[]>(this.baseUrl+'/CgstMaster/GetAllByPage',params);
 
   }
 
