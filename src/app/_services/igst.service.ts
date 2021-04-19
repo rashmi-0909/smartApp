@@ -10,11 +10,6 @@ import { IgstParams } from '../_models/igstparams';
 
 import { Observable, throwError } from "rxjs";
 
-const httpOptions = {
-  hearders: new HttpHeaders({
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-  })
-}
 
 @Injectable({
   providedIn: 'root'
@@ -62,10 +57,9 @@ export class IgstService {
 
   getById(igstId: number):Observable<IgstModel> {
    console.log('inside srvice');
-    const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
+    
 
-  return this.http.get(this.baseUrl+'/IgstMaster/'+igstId,{ 'headers': headers }).pipe(
+  return this.http.get(this.baseUrl+'/IgstMaster/'+igstId).pipe(
     map((response: ServiceResponseModel) => {
      
       return JSON.parse(JSON.stringify(response.data));

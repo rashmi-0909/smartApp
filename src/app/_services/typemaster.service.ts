@@ -9,13 +9,6 @@ import { Observable, throwError } from "rxjs";
 import { PaginatedResult } from '../_models/pagination ';
 import { TypemasterParams } from '../_models/typemasterparams';
 
-
-const httpOptions = {
-  hearders: new HttpHeaders({
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-  })
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -61,25 +54,6 @@ export class TypemasterService {
   }
 
 
-  // getById(compCode: string):Observable<AccountMasterModel> {
-  //  console.log('inside srvice');
-  //   const headers = new HttpHeaders()
-  //   .set('Content-Type', 'application/json')
-
-  // return this.http.get(this.baseUrl+'/Company/'+compCode,{ 'headers': headers }).pipe(
-  //   map((response: ServiceResponseModel) => {
-     
-  //     return JSON.parse(JSON.stringify(response.data));
-  //     console.log(response.data);
-  //   }, error => {
-  //     console.log(error)
-  //     return throwError('Unable to get the Value ')
-  //   })
-  // );
-
-  // }
-
-
   addType(typeData:TypeMasterModel){
        console.log('in service');
        console.log(typeData);
@@ -87,16 +61,10 @@ export class TypemasterService {
    
   }
 
-  // editCgst(val:number,cgstData:any){
-  //   return this.http.put<any>(this.baseUrl+'/Company/Edit',val,cgstData);
-  // }
   editAccount(typeData:TypeMasterModel){
        return this.http.put<any>(this.baseUrl+'/TypeMaster/Edit',typeData);
     }
 
-  // deleteAccount(compCode:string,accYear:string,){
-  //   return this.http.delete<AccountMasterModel>(this.baseUrl+'/Company/'+compCode);
-
-  // } 
+  
 
 }

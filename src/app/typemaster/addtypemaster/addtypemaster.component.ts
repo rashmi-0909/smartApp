@@ -10,7 +10,7 @@ import {TypemasterService}from'src/app/_services/typemaster.service';
 import { CompanyService } from 'src/app/_services/company.service';
 
 import { CompanyModel } from 'src/app/_models/companymodel';
-// import { Component, Input } from '@angular/core'
+
 
 
 
@@ -58,21 +58,7 @@ export class AddtypemasterComponent implements OnInit {
         console.log(this.form);
         this.loadCompanyList();
         
-    //   if(!this.isAddMode) {
-
-
-       
-    //        console.log('strt fetching');
-    //     this.cgstservice.getById(this.cgstId)
-    //         .pipe(first())
-    //         .subscribe(x => this.form.patchValue(x));
-         
-    // }
     
-
-
-
-
 
 
   }

@@ -7,11 +7,7 @@ import { map } from 'rxjs/operators';
 import { Observable, throwError } from "rxjs";
 import { PaginatedResult } from '../_models/pagination ';
 import { SgstParams } from '../_models/sgstparams';
-const httpOptions = {
-  hearders: new HttpHeaders({
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-  })
-}
+
 
 
 @Injectable({
@@ -22,21 +18,7 @@ export class SgstService {
   baseUrl = environment.apiURL;
   constructor(private http: HttpClient) { }
 
-  // getAllSgst(): Observable<SgstModel[]> {
-   
-  //   const headers = new HttpHeaders()
-  //     .set('Content-Type', 'application/json')
-
-  //   return this.http.get(this.baseUrl+'/SgstMaster/GetAll', { 'headers': headers }).pipe(
-  //     map((response: ServiceResponseModel) => {
-       
-  //       return JSON.parse(JSON.stringify(response.data));
-  //     }, error => {
-  //       console.log(error)
-  //       return throwError('Unable to get the Value ')
-  //     })
-  //   );
-  // }
+  
   getAllSgst(sgstParams: SgstParams)  {
    
     let params = this.getPaginationHeaders(sgstParams.pageNumber, sgstParams.pageSize);
@@ -79,10 +61,9 @@ export class SgstService {
 
   getById(sgstId: number):Observable<SgstModel> {
    console.log('inside srvice');
-    const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
+    
 
-  return this.http.get(this.baseUrl+'/SgstMaster/'+sgstId,{ 'headers': headers }).pipe(
+  return this.http.get(this.baseUrl+'/SgstMaster/'+sgstId).pipe(
     map((response: ServiceResponseModel) => {
      
       return JSON.parse(JSON.stringify(response.data));
@@ -101,9 +82,6 @@ export class SgstService {
    
   }
 
-  // editCgst(val:number,cgstData:any){
-  //   return this.http.put<any>(this.baseUrl+'/CgstMaster/Edit',val,cgstData);
-  // }
   editSgst(sgstData:SgstModel){
        return this.http.put<any>(this.baseUrl+'/SgstMaster/Edit',sgstData);
     }

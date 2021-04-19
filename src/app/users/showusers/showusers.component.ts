@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/_services/account.service';
-import { Router, RouterModule } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { observable } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { UserService } from 'src/app/_services/user.service';
+import { Router } from '@angular/router';
+// import { HttpClient } from '@angular/common/http';
+// import { map } from 'rxjs/operators';
+// import { observable } from 'rxjs';
+// import { first } from 'rxjs/operators';
 
 import { UserModel } from '../../_models/usermodel'
 @Component({
@@ -16,7 +16,7 @@ export class ShowusersComponent implements OnInit {
   users: UserModel[];
   isDeleting:boolean= false;
   userName:UserModel;
-  constructor(private accountservice: AccountService ,private router:Router) { }
+  constructor(private userservice: UserService ,private router:Router) { }
 
   ngOnInit(): void {
     this.loadUsersList();
@@ -24,27 +24,15 @@ export class ShowusersComponent implements OnInit {
   }
 
   loadUsersList() {
-    this.accountservice.getAllUsers().subscribe(userList => {
+    this.userservice.getAllUsers().subscribe(userList => {
    
       this.users = userList;
     })
   }
-//   deleteuser(userName:string) {
-//       debugger;
-//     const user = this.users.find(x => x.userName ===userName);
-//    debugger;
-//     if (!user) return;
-//     this.isDeleting = true;
-//     //  debugger;
-//      this.accountservice.deleteUser(userName);
-//       // .pipe(first())
-//         // .subscribe(() => this.users = this.users.filter(x => x.userName !== userName));
-//         this.router.navigateByUrl('menu');
-//          debugger;
-// }
+
 deleteuser(userName:string)
 {
-  this.accountservice.deleteUser(userName).subscribe(res=>{
+  this.userservice.deleteUser(userName).subscribe(res=>{
     this.loadUsersList();
   });
 }

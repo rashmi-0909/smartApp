@@ -8,12 +8,6 @@ import { Observable, throwError } from "rxjs";
 import { PaginatedResult } from '../_models/pagination ';
 import { TransactionmasterParams } from '../_models/transactionmasterparams';
 
-const httpOptions = {
-  hearders: new HttpHeaders({
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-  })
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,8 +18,6 @@ export class TransactionmasterService {
 
   constructor(private http: HttpClient) { }
 
-
-
   getAllTransactionMaster(transactionmasterParams: TransactionmasterParams)  {
    
     let params = this.getPaginationHeaders(transactionmasterParams.pageNumber, transactionmasterParams.pageSize);
@@ -33,7 +25,6 @@ export class TransactionmasterService {
     return this.getPaginatedResult<TransactionMasterModel[]>(this.baseUrl+'/TransactionMaster/GetAllByPage', params);
 
   }
-
 
   private getPaginationHeaders(pageNumber: number, pageSize: number) {
 
@@ -58,13 +49,10 @@ export class TransactionmasterService {
     );
   }
 
-
   TransactionGetAll(): Observable<TransactionMasterModel[]> {
    
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
 
-    return this.http.get(this.baseUrl+'/TransactionMaster/GetAll',{ 'headers': headers }).pipe(
+    return this.http.get(this.baseUrl+'/TransactionMaster/GetAll').pipe(
       map((response: ServiceResponseModel) => {
        
         return JSON.parse(JSON.stringify(response.data));
@@ -75,13 +63,11 @@ export class TransactionmasterService {
     );
   }
 
-
   getById(trxId: string):Observable<TransactionMasterModel> {
     debugger;
    console.log('inside srvice');
-    const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    return this.http.get(this.baseUrl+'/TransactionMaster/'+trxId,{ 'headers': headers }).pipe(
+    
+    return this.http.get(this.baseUrl+'/TransactionMaster/'+trxId).pipe(
   
     map((response: ServiceResponseModel) => {
      
@@ -103,9 +89,6 @@ export class TransactionmasterService {
    
   }
 
-  // editCgst(val:number,cgstData:any){
-  //   return this.http.put<any>(this.baseUrl+'/Company/Edit',val,cgstData);
-  // }
   editTransaction(transactionData:TransactionMasterModel){
        return this.http.put<any>(this.baseUrl+'/TransactionMaster/Edit',transactionData);
     }

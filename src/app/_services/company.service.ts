@@ -6,11 +6,6 @@ import { ServiceResponseModel } from '../_models/serviceresponseModel';
 import { map } from 'rxjs/operators';
 import { Observable, throwError } from "rxjs";
 
-const httpOptions = {
-  hearders: new HttpHeaders({
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
-  })
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -21,10 +16,7 @@ export class CompanyService {
 
   getAllCompany(): Observable<CompanyModel[]> {
    
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-
-    return this.http.get(this.baseUrl+'/Company/GetAll', { 'headers': headers }).pipe(
+    return this.http.get(this.baseUrl+'/Company/GetAll').pipe(
       map((response: ServiceResponseModel) => {
        
         return JSON.parse(JSON.stringify(response.data));
@@ -37,11 +29,9 @@ export class CompanyService {
 
 
   getById(compCode: string):Observable<CompanyModel> {
-   console.log('inside srvice');
-    const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
+   
 
-  return this.http.get(this.baseUrl+'/Company/'+compCode,{ 'headers': headers }).pipe(
+  return this.http.get(this.baseUrl+'/Company/'+compCode).pipe(
     map((response: ServiceResponseModel) => {
      
       return JSON.parse(JSON.stringify(response.data));
@@ -62,9 +52,6 @@ export class CompanyService {
    
   }
 
-  // editCgst(val:number,cgstData:any){
-  //   return this.http.put<any>(this.baseUrl+'/Company/Edit',val,cgstData);
-  // }
   editCompany(companyData:CompanyModel){
        return this.http.put<any>(this.baseUrl+'/Company/Edit',companyData);
     }

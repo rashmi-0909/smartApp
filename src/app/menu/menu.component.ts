@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import{AccountService}from 'src/app/_services/account.service';
+import{UserService}from 'src/app/_services/user.service';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
  
   public actions = ['Action - 1', 'Action - 2', 'Action - 3']
   public dropdownItem: string;
-  constructor(private accountService:AccountService,private router:Router ) {  this.dropdownItem = this.actions[0] }
+  constructor(private userService:UserService,private router:Router ) {  this.dropdownItem = this.actions[0] }
 
   ngOnInit(): void {
   
@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
     this.dropdownItem = item;
   }
   logout() {
-    this.accountService.logout();
+    this.userService.logout();
     this.router.navigateByUrl('');
     //this.loggedIn = false;
   }

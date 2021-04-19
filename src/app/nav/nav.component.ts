@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { UserModel } from '../_models/usermodel';
-import { AccountService } from '../_services/account.service'
+import { UserService } from '../_services/user.service'
 
 @Component({
   selector: 'app-nav',
@@ -14,22 +14,24 @@ export class NavComponent implements OnInit {
   public menuBar:boolean=false;
   model: any = {}
   //loggedIn: boolean;
-  currentUser$: Observable<UserModel>;
-  
+  // currentUser$: Observable<UserModel>;
+    public currentUser$:string;
  //public loggedInUser:any;
 
-  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
+  constructor(public userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     //this.getCurrentUser();
-    this.currentUser$ = this.accountService.currnentUser$;
+    // this.currentUser$ = this.userService.currnentUser$;
+    this.currentUser$=localStorage.getItem('user');
     
   }
 
   login():void {
     console.log(this.model)
-     this.accountService.login(this.model).subscribe(Response=> {
+     this.userService.login(this.model).subscribe(Response=> {
       this.router.navigate(['showcompany'], { queryParams: { loggedin: 'success' } });
+      
      },
       error => {
       console.log(error);
@@ -38,7 +40,7 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this.accountService.logout();
+    this.userService.logout();
     this.router.navigateByUrl('/');
     //this.loggedIn = false;
     

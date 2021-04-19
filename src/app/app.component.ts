@@ -1,5 +1,5 @@
 import { Component,NgZone } from '@angular/core';
-import{AccountService}from './_services/account.service';
+import{UserService}from './_services/user.service';
 import{UserModel}from'./_models/usermodel';
 import { Observable } from 'rxjs';
 import{AppModule}from './app.module'
@@ -16,21 +16,13 @@ export class AppComponent {
   appurl:string;
   isLogin:boolean=false;
   currentUser$:Observable<UserModel>;
-  constructor(public accountService: AccountService,private zone: NgZone,private router:Router) {
-    // this.router.events.subscribe((event: any) => {
-    // //   if (event instanceof NavigationEnd) {
-    // //     if (event.url === '/nav') {
-    // //       this.isLogin= true;
-    // //     } else {
-    // //       this.isLogin= false;
-    // //     }
-    // //   }
-    // // });
+  constructor(public userService: UserService,private zone: NgZone,private router:Router) {
+    
    }
   ngOnInit(): void {
     //this.getCurrentUser();
      
-    this.currentUser$ = this.accountService.currnentUser$;
+    this.currentUser$ = this.userService.currnentUser$;
   }
   setCurrentUser():void{
     const user:UserModel=JSON.parse(localStorage.getItem('user'));

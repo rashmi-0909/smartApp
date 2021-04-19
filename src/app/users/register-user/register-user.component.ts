@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AccountService} from 'src/app/_services/account.service';
+import { UserService} from 'src/app/_services/user.service';
 import{CompanyService}from 'src/app/_services/company.service';
 import { Router, ActivatedRoute ,RouterModule} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,7 +22,7 @@ export class RegisterUserComponent implements OnInit {
   submitted = false;
  companyList: CompanyModel[];
  
-  constructor(private  accountservice:AccountService,private  companyservice:CompanyService
+  constructor(private  userservice:UserService,private  companyservice:CompanyService
      ,private router: Router,
     
     private formBuilder: FormBuilder, 
@@ -33,7 +33,7 @@ export class RegisterUserComponent implements OnInit {
     this.userName= this.route.snapshot.params['userName'];
      this.isAddMode = !this.userName;   
         this.form = this.formBuilder.group({
-          // compCode: ['', Validators.required],
+         
           compCode: [localStorage.getItem('CompCode').toString() ],
           userName: ['', Validators.required],
           userEmailId: ['', Validators.required],
@@ -45,7 +45,7 @@ export class RegisterUserComponent implements OnInit {
       if(!this.isAddMode) {
             debugger;
            console.log('strt fetching');
-        this.accountservice.getByName(this.userName)
+        this.userservice.getByName(this.userName)
             .pipe(first())
             .subscribe(x => this.form.patchValue(x));
         
@@ -68,7 +68,7 @@ export class RegisterUserComponent implements OnInit {
          return;
      }
   
-     //  this.loading = true;
+    
      if (this.isAddMode) {
          this.registerUser();
      } 
@@ -81,13 +81,13 @@ export class RegisterUserComponent implements OnInit {
   registerUser():void{
     console.log(this.form);
     console.log('in registerUser');
-  this.accountservice.register(this.form.value)
+  this.userservice.register(this.form.value)
    .subscribe((res:any ) => {
      if(res.succeded)
       console.log(res.data);
-     // this.router.navigate(['/showcgst'], { queryParams: { registered: 'success' } });
+    
      this.router.navigate(['/showusers']);
-     // this.toaster.success('Record For CGST has been inserted Successfully!!', 'Register CGST');
+    
     },
      (errorResponse) => {
       // this.errors.push(errorResponse.error.error);
@@ -97,7 +97,7 @@ export class RegisterUserComponent implements OnInit {
   }
   updateUser():void{
     console.log('in update');
-    this.accountservice.editUser(this.form.value)
+    this.userservice.editUser(this.form.value)
         .pipe(first())
         .subscribe((res:any ) => {
           if(res.succeded)
