@@ -17,6 +17,7 @@ import { CgstModel } from '../../_models/cgstmodel';
 
 export class ShowcgstComponent implements OnInit {
   cgsts: CgstModel[];
+  
  // isDeleting:boolean= false;
   cgstId:CgstModel;
   pagination: Pagination;
@@ -36,8 +37,8 @@ export class ShowcgstComponent implements OnInit {
 
   loadCgstList() {
     this.cgstService.getAllCgst(this.cgstParams).subscribe(response => {
-      // debugger;
-      this.cgsts = response.result;
+      debugger;
+      this.cgsts = response.result ;
       this.pagination = response.pagination;
     })
   }

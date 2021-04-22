@@ -26,10 +26,6 @@ export class CgstService {
     return this.getPaginatedResult<CgstModel[]>(this.baseUrl+'/CgstMaster/GetAllByPage',params);
 
   }
-
-
-
-
   private getPaginationHeaders(pageNumber: number, pageSize: number) {
     // debugger;
     let params = new HttpParams();
@@ -39,12 +35,17 @@ export class CgstService {
   }
 
   private getPaginatedResult<T>(url, params) {
-    //debugger;
+    debugger;
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+    const body = {  orderBy: "cgstId" }
+    return this.http.post<T>(url, body, { observe: 'response', params: params }).pipe(
       map(response => {
-        //debugger;
+        debugger;
+        console.log(response.body);
         paginatedResult.result = response.body;
+       
+        
+        
         if (response.headers.get('Pagination') !== null) {
           paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
         }
@@ -52,6 +53,8 @@ export class CgstService {
       })
     );
   }
+
+
 
   getById(cgstId: number):Observable<CgstModel> {
    console.log('inside srvice');
@@ -68,6 +71,7 @@ export class CgstService {
   );
 
   }
+
 
   addCgst(cgstData:CgstModel){
        console.log('in service');
