@@ -61,17 +61,10 @@
                 <td>{{ igst.igstDetail}}</td>
                 <td>{{ igst.igstRate }}</td>
                 <td>
-                    <!-- <button class="btn btn-primary" routerLink='/igst/{{igst.igstId}}'>Edit</button> &nbsp; -->
-                    <a routerLink="edit/{{igst.igstId}}"> <button class="btn btn-link text-gray-light" ng-click="gotoIgstDetails('showigst/edit',igst.igstId)">Edit</button></a>   
-                    <!-- <button (click)="deleteIgst(igst.igstId)" class="btn btn-danger" [disabled]="isDeleting"></button>
-                    <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span> 
-                        <span *ngIf="!isDeleting">Delete</span> -->
-                    <!-- <button class="btn btn-danger" (click)="deleteRecord()">Delete</button> -->
-
-                    <button (click)="deleteIgst(igst.igstId)"class="btn btn-danger" [disabled]="isDeleting">
-                        <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
-                        <span *ngIf="!isDeleting">Delete</span>
-                    </button>
+                    <a routerLink="edit"> <button class="btn btn-link text-gray-light" (click)="gotoIgstDetails('showigst/edit',igst.igstId)">Edit</button></a> &nbsp;   
+                    <button (click)="deleteIgst(igst.igstId)" class="btn btn-danger">
+                        <i class="glyphicon glyphicon-trash"></i>
+                      </button>
 
 
 

@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 export class HttpRequestInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-      debugger;
+     // debugger;
       var token = JSON.parse(localStorage.getItem('user'))?.token
       //var token = localStorage.getItem("user");
   

@@ -20,6 +20,7 @@ export class AddsgstComponent implements OnInit {
   public show:boolean = true;
   form: FormGroup;
   sgstId: number;
+  sgstId_edit:string;
   isAddMode!: boolean;
   // loading = false;
   submitted = false;
@@ -35,8 +36,8 @@ export class AddsgstComponent implements OnInit {
    ngOnInit(): void {
 
     
-    this.sgstId= this.route.snapshot.params['sgstId'];
-    this.isAddMode = !this.sgstId;   
+    // this.sgstId= this.route.snapshot.params['sgstId'];
+    // this.isAddMode = !this.sgstId;   
         this.form = this.formBuilder.group({
           sgstId: ['', Validators.required],
           sgstDetail: ['', Validators.required],
@@ -44,16 +45,16 @@ export class AddsgstComponent implements OnInit {
          
       });
         console.log(this.form);
-        this.isAddMode = !this.sgstId;
-     
-        if(!this.isAddMode) {
        
+        if(!this.isAddMode) {
+            
+          console.log();
           console.log('strt fetching');
-       this.sgstservice.getById(this.sgstId)
-           .pipe(first())
-           .subscribe(x => this.form.patchValue(x));
-        
-   }
+          this.sgstId_edit=  localStorage.getItem('sgstEditId');  
+                     this.sgstservice.getById(this.sgstId_edit)
+            .subscribe(x => this.form.setValue(x));
+         
+  }
   }
 
    get f() { return this.form.controls; }

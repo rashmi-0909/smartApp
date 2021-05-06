@@ -12,6 +12,7 @@ export class AddigstComponent implements OnInit {
   public show:boolean = true;
   form: FormGroup;
   igstId: number;
+  igstId_edit:string;
   isAddMode!: boolean;
   // loading = false;
   submitted = false;
@@ -21,24 +22,21 @@ export class AddigstComponent implements OnInit {
     private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
-
- 
-    this.igstId= this.route.snapshot.params['igstId'];
-    this.isAddMode = !this.igstId;   
-        this.form = this.formBuilder.group({
-          igstId: ['', Validators.required],
-          igstDetail: ['', Validators.required],
-          igstRate: ['', Validators.required]
-         
-      });
+   
+          this.form = this.formBuilder.group({
+             igstId: ['', Validators.required],
+             igstDetail: ['', Validators.required],
+             igstRate: ['', Validators.required]
+        });
         console.log(this.form);
-        this.isAddMode = !this.igstId;
+        
       if(!this.isAddMode) {
+        console.log();
+        console.log('strt fetching');
+        this.igstId_edit=  localStorage.getItem('igstEditId');              
+        this.igstservice.getById(this.igstId_edit)
+          .subscribe(x => this.form.setValue(x));
        
-           console.log('strt fetching');
-        this.igstservice.getById(this.igstId)
-            .pipe(first())
-            .subscribe(x => this.form.patchValue(x));
          
     }
 
@@ -74,13 +72,12 @@ export class AddigstComponent implements OnInit {
      .subscribe((res:any ) => {
        if(res.succeded)
         console.log(res.data);
-       // this.router.navigate(['/showigst'], { queryParams: { registered: 'success' } });
+      
        this.router.navigate(['/showigst']);
-       // this.toaster.success('Record For igst has been inserted Successfully!!', 'Register igst');
+      
       },
        (errorResponse) => {
-        // this.errors.push(errorResponse.error.error);
-         //console.log(this.errors);
+       
        });
        
   

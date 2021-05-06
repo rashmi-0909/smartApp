@@ -9,7 +9,7 @@ import{HttpClientModule,HttpHeaders}from '@angular/common/http';
 import{FormsModule,ReactiveFormsModule}from'@angular/forms';
 
 import { ShowcgstComponent } from './cgst/showcgst/showcgst.component';
-import { AddeditcgstComponent } from './cgst/addeditcgst/addeditcgst.component';
+import { AddeditcgstComponent } from './cgst/showcgst/addeditcgst/addeditcgst.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 

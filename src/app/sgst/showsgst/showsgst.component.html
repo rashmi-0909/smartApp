@@ -62,11 +62,17 @@
                 <td>{{ sgst.sgstDetail}}</td>
                 <td>{{ sgst.sgstRate }}</td>
                 <td>
-                    <a routerLink="edit/{{sgst.sgstId}}"> <button class="btn btn-link text-gray-light" ng-click="gotoSgstDetails('showsgst/edit',sgst.sgstId)">Edit</button></a> &nbsp;
-                    <button (click)="deleteSgst(sgst.sgstId)"class="btn btn-danger" [disabled]="isDeleting">
+                    <!-- <a routerLink="edit/{{sgst.sgstId}}"> <button class="btn btn-link text-gray-light" ng-click="gotoSgstDetails('showsgst/edit',sgst.sgstId)">Edit</button></a> &nbsp; -->
+                    
+                    <a routerLink="edit"> <button class="btn btn-link text-gray-light" (click)="gotoSgstDetails('showsgst/edit',sgst.sgstId)">Edit</button></a> &nbsp;
+                    <!-- <button (click)="deleteSgst(sgst.sgstId)"class="btn btn-danger" [disabled]="isDeleting">
                         <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
                         <span *ngIf="!isDeleting">Delete</span>
-                    </button>
+                    </button> -->
+
+                    <button (click)="deleteSgst(sgst.sgstId)" class="btn btn-danger">
+                        <i class="glyphicon glyphicon-trash"></i>
+                      </button>
                    
 
                 </td>

@@ -36,7 +36,7 @@ export class UserService {
     // debugger;
     return this.http.post(this.baseUrl + '/User/Login', model).pipe(
       map((response: ServiceResponseModel) => {
-        debugger;
+       
         let jsonObj: any = JSON.stringify(response.data);
         
         let user: UserModel = <UserModel>jsonObj;

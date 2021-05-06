@@ -41,12 +41,14 @@ export class IgstService {
   }
 
   private getPaginatedResult<T>(url, params) {
-    //debugger;
+    
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+    const body = {  orderBy: "igstId" }
+    return this.http.post<T>(url, body, { observe: 'response', params: params }).pipe(
       map(response => {
-        //debugger;
-        paginatedResult.result = response.body;
+       
+       let jsonBody: any = response.body;
+        paginatedResult.result = jsonBody.data;
         if (response.headers.get('Pagination') !== null) {
           paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
         }
@@ -55,32 +57,28 @@ export class IgstService {
     );
   }
 
-  getById(igstId: number):Observable<IgstModel> {
-   console.log('inside srvice');
-    
-
-  return this.http.get(this.baseUrl+'/IgstMaster/'+igstId).pipe(
-    map((response: ServiceResponseModel) => {
+  getById(igstId: string):Observable<IgstModel> {
+    console.log('inside srvice');
+    const body = { "igstId":igstId }
+    debugger;
+    return this.http.post(this.baseUrl+'/IgstMaster/GetIgstByCode',body).pipe(
+      map((response: ServiceResponseModel) => {
      
-      return JSON.parse(JSON.stringify(response.data));
-    }, error => {
-      console.log(error)
-      return throwError('Unable to get the Value ')
-    })
-  );
-
+        return JSON.parse(JSON.stringify(response.data));
+      }, error => {
+        console.log(error)
+        return throwError('Unable to get the Value ')
+      })
+    );
   }
-
-
+  
   addIgst(igstData:IgstModel){
        console.log('in service');
     return this.http.post(this.baseUrl+'/IgstMaster/Add',igstData);
    
   }
 
- 
-
-  editIgst(igstData:IgstModel){
+   editIgst(igstData:IgstModel){
        return this.http.put<any>(this.baseUrl+'/IgstMaster/Edit',igstData);
     }
 

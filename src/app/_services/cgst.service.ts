@@ -7,15 +7,13 @@ import { PaginatedResult } from '../_models/pagination ';
 import { CgstParams } from '../_models/cgstparams';
 import { Observable, throwError } from "rxjs";
 import { map } from 'rxjs/operators';
-
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class CgstService {
   cgstModels: CgstModel[] = [];
-
+ cgstedit:CgstModel;
   baseUrl = environment.apiURL;
   constructor(private http: HttpClient) { }
 
@@ -35,17 +33,14 @@ export class CgstService {
   }
 
   private getPaginatedResult<T>(url, params) {
-    debugger;
+    
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
     const body = {  orderBy: "cgstId" }
     return this.http.post<T>(url, body, { observe: 'response', params: params }).pipe(
       map(response => {
-        debugger;
-        console.log(response.body);
-        paginatedResult.result = response.body;
        
-        
-        
+       let jsonBody: any = response.body;
+        paginatedResult.result = jsonBody.data;
         if (response.headers.get('Pagination') !== null) {
           paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
         }
@@ -54,39 +49,36 @@ export class CgstService {
     );
   }
 
+  // getById(cgstId: string):Observable<CgstModel> {
+  //   console.log('inside srvice');
+  //   const body = { "cgstId":cgstId }
+  //   debugger;
+  //   return this.http.post<CgstModel>(this.baseUrl+'/CgstMaster/GetCgstByCode',body);
+      // }
 
-
-  getById(cgstId: number):Observable<CgstModel> {
-   console.log('inside srvice');
-   
-
-  return this.http.get(this.baseUrl+'/CgstMaster/'+cgstId).pipe(
-    map((response: ServiceResponseModel) => {
+  getById(cgstId: string):Observable<CgstModel> {
+    console.log('inside srvice');
+    const body = { "cgstId":cgstId }
+    debugger;
+    return this.http.post(this.baseUrl+'/CgstMaster/GetCgstByCode',body).pipe(
+      map((response: ServiceResponseModel) => {
      
-      return JSON.parse(JSON.stringify(response.data));
-    }, error => {
-      console.log(error)
-      return throwError('Unable to get the Value ')
-    })
-  );
-
+        return JSON.parse(JSON.stringify(response.data));
+      }, error => {
+        console.log(error)
+        return throwError('Unable to get the Value ')
+      })
+    );
   }
-
-
   addCgst(cgstData:CgstModel){
        console.log('in service');
     return this.http.post(this.baseUrl+'/CgstMaster/Add',cgstData);
    
   }
-
     editCgst(cgstData:CgstModel){
        return this.http.put<any>(this.baseUrl+'/CgstMaster/Edit',cgstData);
     }
-
   deleteCgst(cgstId:number){
     return this.http.delete<CgstModel>(this.baseUrl+'/CgstMaster/'+cgstId);
   }
-
-
-
 }

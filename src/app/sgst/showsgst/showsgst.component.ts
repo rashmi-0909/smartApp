@@ -17,7 +17,7 @@ import { SgstParams } from '../../_models/sgstparams';
 })
 export class ShowsgstComponent implements OnInit {
   sgsts: SgstModel[];
-  isDeleting:boolean= false;
+ // isDeleting:boolean= false;
   sgstId:SgstModel;
   pagination: Pagination;
   sgstParams:SgstParams;
@@ -58,34 +58,29 @@ export class ShowsgstComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
   deleteSgst(sgstId:number) {
     const sgst = this.sgsts.find(x => x.sgstId ===sgstId);
     if (!sgst) return;
-    this.isDeleting = true;
+    //this.isDeleting = true;
+    if (confirm("Delete this SGST Details?")) {
     this.sgstService.deleteSgst(sgstId)
         .pipe(first())
         .subscribe(() => this.sgsts = this.sgsts.filter(x => x.sgstId !== sgstId));
         // this.router.navigateByUrl('');
-}
-  gotoSgstDetails(url, id:number){
-    var myurl = `${url}/${id}`;
-    this.router.navigateByUrl(myurl).then(e => {
-      if (e) {
-        console.log("Navigation is successful!");
-      } else {
-        console.log("Navigation has failed!");
+    }
       }
-    });
-  }
+gotoSgstDetails(url:string, id:string){
+          
+  localStorage.setItem('sgstEditId',id.toString());
+      var myurl = `${url}`;
+        this.router.navigateByUrl(myurl).then(e => {
+      if (e) {
+  console.log("Navigation is successful!");
+} else {
+console.log("Navigation has failed!");
+}
+});
+}
   
 
 }

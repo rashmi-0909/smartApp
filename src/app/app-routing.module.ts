@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import{ShowcgstComponent}from'./cgst/showcgst/showcgst.component';
 import{DashboardComponent}from'./dashboard/dashboard.component';
 import{IgstListComponent}from 'src/app/igst/igst-list.component';
-import{ AddeditcgstComponent }from './cgst/addeditcgst/addeditcgst.component';
+import{ AddeditcgstComponent }from './cgst/showcgst/addeditcgst/addeditcgst.component';
 
 import{ShowsgstComponent}from './sgst/showsgst/showsgst.component';
 import{AddsgstComponent}from './sgst/addsgst/addsgst.component';
@@ -29,15 +29,16 @@ const routes: Routes = [
   {path:'menu',component:MenuComponent},
   
   {path:'showigst',component:IgstListComponent},
-  { path:'showigst/edit/:igstId', component: AddigstComponent},
+  { path:'showigst/edit', component: AddigstComponent},
   {path:'addigst',component:AddigstComponent},
   {path:'showcgst',component:ShowcgstComponent},
   {path:'addcgst',component:AddeditcgstComponent},
-  { path: 'showcgst/edit/:cgstId', component: AddeditcgstComponent},
+  // { path: 'showcgst/edit/:cgstId', component: AddeditcgstComponent},
+  { path: 'showcgst/edit', component: AddeditcgstComponent},
   {path:'dashboard',component:DashboardComponent},
      {path:'showsgst',component:ShowsgstComponent},
   {path:'addsgst',component:AddsgstComponent},
-  { path:'showsgst/edit/:sgstId', component: AddsgstComponent},
+  { path:'showsgst/edit', component: AddsgstComponent},
   {path:'addcompany',component:AddcompanyComponent},
   { path:'showcompany/edit/:compCode', component: AddcompanyComponent},
   {path:'showcompany',component:ShowcompanyComponent},

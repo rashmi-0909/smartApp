@@ -13,16 +13,13 @@ import { UserService } from '../_services/user.service'
 export class NavComponent implements OnInit {
   public menuBar:boolean=false;
   model: any = {}
-  //loggedIn: boolean;
-  // currentUser$: Observable<UserModel>;
+  
     public currentUser$:string;
- //public loggedInUser:any;
 
   constructor(public userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    //this.getCurrentUser();
-    // this.currentUser$ = this.userService.currnentUser$;
+    
     this.currentUser$=localStorage.getItem('user');
     
   }

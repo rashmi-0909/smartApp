@@ -9,7 +9,6 @@ import { PaginatedResult } from '../_models/pagination ';
 import { SgstParams } from '../_models/sgstparams';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -37,12 +36,14 @@ export class SgstService {
   }
 
   private getPaginatedResult<T>(url, params) {
-    //debugger;
+    
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+    const body = {  orderBy: "sgstId" }
+    return this.http.post<T>(url, body, { observe: 'response', params: params }).pipe(
       map(response => {
-        //debugger;
-        paginatedResult.result = response.body;
+       
+       let jsonBody: any = response.body;
+        paginatedResult.result = jsonBody.data;
         if (response.headers.get('Pagination') !== null) {
           paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
         }
@@ -50,33 +51,21 @@ export class SgstService {
       })
     );
   }
-
-
-
-
-
-
-
-
-
-  getById(sgstId: number):Observable<SgstModel> {
-   console.log('inside srvice');
-    
-
-  return this.http.get(this.baseUrl+'/SgstMaster/'+sgstId).pipe(
-    map((response: ServiceResponseModel) => {
+  getById(sgstId: string):Observable<SgstModel> {
+    console.log('inside srvice');
+    const body = { "sgstId":sgstId }
+    debugger;
+    return this.http.post(this.baseUrl+'/SgstMaster/GetSgstByCode',body).pipe(
+      map((response: ServiceResponseModel) => {
      
-      return JSON.parse(JSON.stringify(response.data));
-    }, error => {
-      console.log(error)
-      return throwError('Unable to get the Value ')
-    })
-  );
-
+        return JSON.parse(JSON.stringify(response.data));
+      }, error => {
+        console.log(error)
+        return throwError('Unable to get the Value ')
+      })
+    );
   }
-
-
-  addSgst(sgstData:SgstModel){
+ addSgst(sgstData:SgstModel){
        console.log('in service');
     return this.http.post(this.baseUrl+'/SgstMaster/Add',sgstData);
    

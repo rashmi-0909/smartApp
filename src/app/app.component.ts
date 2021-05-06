@@ -13,13 +13,17 @@ import { Router, RouterLink, NavigationStart,NavigationEnd } from '@angular/rout
 })
 export class AppComponent {
   title = 'smartApp';
+  editId:number;
   appurl:string;
   isLogin:boolean=false;
   currentUser$:Observable<UserModel>;
+  
   constructor(public userService: UserService,private zone: NgZone,private router:Router) {
     
    }
   ngOnInit(): void {
+    
+    
     //this.getCurrentUser();
      
     this.currentUser$ = this.userService.currnentUser$;
