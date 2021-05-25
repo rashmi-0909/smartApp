@@ -64,7 +64,7 @@
                 <td>
                     <!-- <a routerLink="edit/{{sgst.sgstId}}"> <button class="btn btn-link text-gray-light" ng-click="gotoSgstDetails('showsgst/edit',sgst.sgstId)">Edit</button></a> &nbsp; -->
                     
-                    <a routerLink="edit"> <button class="btn btn-link text-gray-light" (click)="gotoSgstDetails('showsgst/edit',sgst.sgstId)">Edit</button></a> &nbsp;
+                    <button class="btn btn-link text-gray-light" (click)="gotoSgstDetails('sgstedit',sgst.sgstId)">Edit</button> &nbsp;
                     <!-- <button (click)="deleteSgst(sgst.sgstId)"class="btn btn-danger" [disabled]="isDeleting">
                         <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
                         <span *ngIf="!isDeleting">Delete</span>

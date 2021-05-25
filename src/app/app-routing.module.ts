@@ -24,21 +24,19 @@ import{RegisterUserComponent}from './users/register-user/register-user.component
 import{MenuComponent}from './menu/menu.component';
 import{NavComponent}from'./nav/nav.component';
 
-const routes: Routes = [
-  
+const routes: Routes =
+ [
   {path:'menu',component:MenuComponent},
-  
   {path:'showigst',component:IgstListComponent},
-  { path:'showigst/edit', component: AddigstComponent},
+  {path:'igstedit', component: AddigstComponent},
   {path:'addigst',component:AddigstComponent},
   {path:'showcgst',component:ShowcgstComponent},
   {path:'addcgst',component:AddeditcgstComponent},
-  // { path: 'showcgst/edit/:cgstId', component: AddeditcgstComponent},
-  { path: 'showcgst/edit', component: AddeditcgstComponent},
+  {path: 'cgstedit', component: AddeditcgstComponent},
   {path:'dashboard',component:DashboardComponent},
-     {path:'showsgst',component:ShowsgstComponent},
+  {path:'showsgst',component:ShowsgstComponent},
   {path:'addsgst',component:AddsgstComponent},
-  { path:'showsgst/edit', component: AddsgstComponent},
+  {path:'sgstedit', component: AddsgstComponent},
   {path:'addcompany',component:AddcompanyComponent},
   { path:'showcompany/edit/:compCode', component: AddcompanyComponent},
   {path:'showcompany',component:ShowcompanyComponent},
@@ -48,16 +46,10 @@ const routes: Routes = [
   {path:'showtypemaster',component:ShowtypemasterComponent},
   {path:'transactionmaster',component:TransactionmasterComponent},
   {path:'addtransactionmaster',component:AddtransactionComponent},
-
   { path:'transactionmaster/edit/:trxId', component: AddtransactionComponent},
-
-    
-    
-    {path:'adduser',component:RegisterUserComponent}, 
-    { path:'showusers/edit/:userName',component:RegisterUserComponent },
-    {path:'showusers',component:ShowusersComponent},
-    
-
+  {path:'adduser',component:RegisterUserComponent}, 
+  { path:'showusers/edit/:userName',component:RegisterUserComponent },
+  {path:'showusers',component:ShowusersComponent},
 ];
 
 @NgModule({

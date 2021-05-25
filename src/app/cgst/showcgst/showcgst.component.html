@@ -74,12 +74,8 @@
                 <td>{{ cgst.cgstRate }}</td>
                 <td>
                     <!-- <a routerLink="edit/{{cgst.cgstId}}"> <button class="btn btn-link text-gray-light" ng-click="gotoCgstDetails('showcgst/edit',cgst.cgstId)">Edit</button></a> &nbsp; -->
-                    <a routerLink="edit"> <button class="btn btn-link text-gray-light" (click)="gotoCgstDetails('showcgst/edit',cgst.cgstId)">Edit</button></a> &nbsp;
-<!--                     
-                    <button (click)="deleteCgst(cgst.cgstId)"class="btn btn-danger" [disabled]="isDeleting">
-                        <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
-                        <span *ngIf="!isDeleting">Delete</span>
-                    </button> -->
+                     <button class="btn btn-link text-gray-light" (click)="gotoCgstDetails('cgstedit',cgst.cgstId)">Edit</button> &nbsp;
+            
                     <button (click)="deleteCgst(cgst.cgstId)" class="btn btn-danger">
                         <i class="glyphicon glyphicon-trash"></i>
                       </button>

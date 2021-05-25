@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-md-5">
             <div class="container-fluid">
-                <h3 *ngIf="isAddMode">Add IGST</h3>
-                <h3 *ngIf="!isAddMode">Edit IGST </h3>
+                <h3 *ngIf="!isEditMode">Add IGST</h3>
+                <h3 *ngIf="isEditMode">Edit IGST </h3>
             </div>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -13,7 +13,7 @@
             <!-- <ng-container *ngif="show" > -->
             
             <label  >IgstId</label>
-            <input type="text" [readonly]="!isAddMode" formControlName="igstId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.igstId.errors }" />
+            <input type="text" [readonly]="isEditMode" formControlName="igstId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.igstId.errors }" />
             <div *ngIf="submitted && f.igstId.errors" class="invalid-feedback">
                 <div *ngIf="f.igstId.errors.required">IgstId in digit form  is required.</div>
                 <div *ngIf="f.igstId.errors.pattern">IgstId in number form only </div>

@@ -49,6 +49,7 @@ import { BillmasterComponent } from './billmaster/billmaster.component';
 import { AddbillmasterComponent } from './billmaster/addbillmaster/addbillmaster.component';
 
 import { HttpInterceptorModule } from './security/http-interceptor.module';
+import { GeneralledgerComponent } from './ledger/ledger.component';
 
 
 
@@ -81,6 +82,7 @@ import { HttpInterceptorModule } from './security/http-interceptor.module';
     AddtransactionComponent,
     BillmasterComponent,
     AddbillmasterComponent,
+    GeneralledgerComponent,
    
    
     

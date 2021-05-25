@@ -8,21 +8,31 @@ import { Router, RouterLink, NavigationStart,NavigationEnd } from '@angular/rout
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+    templateUrl: './app.component.html',
+  
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'smartApp';
   editId:number;
+   flag=true;  
+  //  parentmsg="hello";
+
+
+
+
+
   appurl:string;
   isLogin:boolean=false;
   currentUser$:Observable<UserModel>;
+ 
   
   constructor(public userService: UserService,private zone: NgZone,private router:Router) {
     
    }
   ngOnInit(): void {
-    
+   
+
     
     //this.getCurrentUser();
      

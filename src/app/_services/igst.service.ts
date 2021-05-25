@@ -29,9 +29,6 @@ export class IgstService {
 
   }
 
-
-
-
   private getPaginationHeaders(pageNumber: number, pageSize: number) {
     //debugger;
     let params = new HttpParams();
@@ -61,9 +58,12 @@ export class IgstService {
     console.log('inside srvice');
     const body = { "igstId":igstId }
     debugger;
-    return this.http.post(this.baseUrl+'/IgstMaster/GetIgstByCode',body).pipe(
+      return this.http.post(this.baseUrl+'/IgstMaster/GetIgstByCode',body).pipe(
       map((response: ServiceResponseModel) => {
-     
+        // debugger;
+
+
+
         return JSON.parse(JSON.stringify(response.data));
       }, error => {
         console.log(error)

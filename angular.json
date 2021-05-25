@@ -24,18 +24,14 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
+           
           },
           "configurations": {
             "production": {
@@ -63,6 +59,8 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
+               
+
               ]
             }
           }
@@ -95,11 +93,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ],
-            "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
             ]
+            
           }
         },
         "lint": {
@@ -115,6 +110,7 @@
             ]
           }
         },
+        
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -132,3 +128,4 @@
   },
   "defaultProject": "smartApp"
 }
+

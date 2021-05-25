@@ -6,6 +6,8 @@ import { Pagination } from '../../_models/pagination ';
 import { CgstParams } from '../../_models/cgstparams';
 import { CgstModel } from '../../_models/cgstmodel';
 import{SharedService}from'src/app/_services/shared.service';
+import { Subscription } from 'rxjs';
+import { SharedserviceModel } from 'src/app/_models/sharedservicemodel';
 
 @Component({
   selector: 'app-showcgst',
@@ -16,7 +18,7 @@ import{SharedService}from'src/app/_services/shared.service';
 export class ShowcgstComponent implements OnInit {
    cgsts: CgstModel[];
      cgstId_edit:number;
-   // isDeleting:boolean= false;
+    public editdata: SharedserviceModel;
   cgstId:CgstModel;
   pagination: Pagination;
   cgstParams: CgstParams;
@@ -27,6 +29,8 @@ export class ShowcgstComponent implements OnInit {
   constructor(private cgstService: CgstService ,private sharedservice:SharedService,private router:Router) {
     // debugger;
     this.cgstParams = new CgstParams();
+    this.editdata = new SharedserviceModel(false, "");
+
    }
 
 ngOnInit(): void {
@@ -44,32 +48,43 @@ loadCgstList() {
     this.loadCgstList();
   }
   addNewRecord() {
+    this.editdata.flag = false;
+    this.editdata.id = "";
+    this.sharedservice.changeObject(this.editdata);
     console.log('adding new record');
     this.router.navigateByUrl('addcgst');
   }
-  pageChanged(event: any) {
+  pageChanged(event: any) 
+  {
    
     this.cgstParams.pageNumber = event.page;
     this.loadCgstList();
   }
-deleteCgst(cgstId:number) {
+deleteCgst(cgstId:number) 
+{
   const cgst = this.cgsts.find(x => x.cgstId ===cgstId);
-  if (!cgst) return;
-  if (confirm("Delete this CGST Details?")) {
-  this.cgstService.deleteCgst(cgstId)
+   if (!cgst) return;
+  if (confirm("Delete this CGST Details?")) 
+  {
+      this.cgstService.deleteCgst(cgstId)
       .pipe(first())
       .subscribe(() => this.cgsts = this.cgsts.filter(x => x.cgstId !== cgstId));
       
+  }
 }
-}
- gotoCgstDetails(url:string, id:string){
-          
-          localStorage.setItem('cgstEditId',id.toString());
-              var myurl = `${url}`;
-                this.router.navigateByUrl(myurl).then(e => {
-              if (e) {
-          console.log("Navigation is successful!");
-  } else {
+
+ gotoCgstDetails(url:string, id:string)
+ {
+  this.editdata.flag = true;
+  this.editdata.id = id;
+  this.sharedservice.changeObject(this.editdata);
+  var myurl = `${url}`;
+  this.router.navigateByUrl(myurl).then(e => {
+  if (e) 
+  {
+    console.log("Navigation is successful!");
+  } else
+ {
     console.log("Navigation has failed!");
   }
 });
