@@ -1,3 +1,4 @@
+
 export class CompanyModel {
     compCode: string;
     accYear: string;

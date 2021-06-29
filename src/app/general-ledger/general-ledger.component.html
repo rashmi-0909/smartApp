@@ -1,0 +1,155 @@
+
+<div class=" w-50 p-3"  >
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row  ">
+      <label>AccountId</label>
+      <select name="accountIdSelect" style="width: 200px" (change)="selectChange($event)"
+        formControlName="accountIdSelect" class="form-control ml-1">
+        <option *ngFor="let account of accountIdList" [Value]="account">
+          {{ account }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-row ">
+      <label>Start Date</label>
+      <input type="datetime-local" formControlName="startDate" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
+      <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+        <div *ngIf="f.startDate.errors.required">Start Date is required</div>
+        <div *ngIf="f.startDate.errors?.dateLessThan"> Start Date Must be less Than Finish Date.
+        </div>
+
+   
+      </div>
+    </div>
+
+    <div class="form-row ">
+      <label>Finish Date</label>
+      <input type="datetime-local" formControlName="finishDate" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.finishDate.errors }" />
+      <div *ngIf="submitted && f.finishDate.errors" class="invalid-feedback">
+        <div *ngIf="f.finishDate.errors.required">finish Date is required</div>
+        <!-- <div *ngIf="f.finishDate.errors?.dateLessThan"> Finish Date Must be Greater Than Finish Date.
+        </div> -->
+        <!-- <div *ngIf="f.get('finishDate').errors?.dateLessThan"> Start Date Must be less Than Finish Date.
+        </div> -->
+      </div>
+    </div>
+    <div class="form-row ">
+      <label>Start Account</label>
+      <input type="text" formControlName="startAccount" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.startAccount.errors }" />
+      <div *ngIf="submitted && f.startAccount.errors" class="invalid-feedback">
+        <div *ngIf="f.startAccount.errors.required">startAccount is required</div>
+        <div *ngIf="f.startAccount.errors?.startfinishAccount"> startAccount Must be Less Than Finish Account.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row ">
+      <label>Finish Account</label>
+      <input type="text" formControlName="finishAccount" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.finishAccount.errors }" />
+      <div *ngIf="submitted && f.finishAccount.errors" class="invalid-feedback">
+        <div *ngIf="f.finishAccount.errors.required">finishAccount is required</div>
+        <div *ngIf="f.finishAccount.errors?.startfinishAccount"> Finish Account Must be Greater Than Start Account.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">
+        <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+        Show Ledger
+      </button>
+      <a routerLink="/home" class="btn btn-link">Cancel</a>
+    </div>
+  </form>
+
+</div>
+<div *ngIf="submitted && showLedger">
+
+
+
+<div class="container-lg align-content-center " >
+  <table class="table table-success " style="border-width: 20px;" >
+   
+  <tr>
+    <td>Company Name</td>
+  <td>{{myobject.name}}</td>
+  </tr>
+  <tr>
+    <td>Address</td>
+     <td>{{myobject.address}}</td>
+    </tr>
+  <tr>
+  <td>From Date</td>
+  <td>{{ fDate }}</td>
+  </tr>
+   <tr>
+  <td>To Date</td>
+  <td>{{ tDate }}</td>
+ 
+</tr>
+
+</table>
+</div>
+<div class="container-lg align-content-center"  >
+<table class="table table-success" style="margin-top: 250px;width: 70%;">
+    <thead>
+          
+
+      <tr>
+        
+        <th scope="col" style="display:inline-flexbox;text-align: center;">AccountLedger</th> 
+        
+      </tr>
+    </thead>
+    <tbody>
+        
+
+ <tr *ngFor="let item of genralledgerList" > 
+   <td style="text-align: left;">
+     <table class="table table-success " style="border-width: 20px ; ">
+      <thead>
+        <tr>
+          
+         
+          <th scope="col">Corresponding AccountId</th>
+          <th scope="col">Corresponding AccountName</th> 
+          <th scope="col">Transaction Type</th> 
+          <th scope="col">VoutureNo</th> 
+          <th scope="col">VoutureDate</th> 
+          <th scope="col"> vouDetail</th> 
+          <th scope="col">drAmount</th>
+          <th scope="col">crAmount</th>
+          <th scope="col">clAmount</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr *ngFor ="let subItem of item.accountLedger">
+    
+    <td> {{subItem.corrAccountId}}</td>
+    <td> {{ subItem.corrAccountName }}</td>
+    <td> {{ subItem.trxType }}</td>
+   <td> {{ subItem.vouNo }}</td>
+    <td>{{ subItem.vouDate }}</td>
+    <td>{{ subItem.vouDetail }}</td>
+    <td>{{ subItem.drAmount }}</td>
+    <td>{{ subItem.crAmount }}</td>
+    <td>{{ subItem.clAmount }}</td>
+    </tr>
+   </tbody>
+    </table>
+   </td> 
+
+
+
+
+    </tbody>
+  </table>
+</div>
+
+
+
+</div>

@@ -4,6 +4,7 @@ export class AccountMasterModel {
     accountId: string;
     name: string;
     opening:number;
+    closing:number;
     curDr: number;
     curCr:number;
    
@@ -14,6 +15,7 @@ export class AccountMasterModel {
         accountId: string,
         name: string,
         opening: number,
+        closing:number,
         curDr: number,
         curCr:number,
     ) 
@@ -23,6 +25,7 @@ export class AccountMasterModel {
         this.accountId = accountId;
         this.name = name;
         this.opening = opening;
+        this.closing=closing;
         this.curCr = curCr;
         this.curDr = curDr;
     }

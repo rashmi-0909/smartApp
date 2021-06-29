@@ -1,1 +1,93 @@
-<p>generalledger works!</p>
+  
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item active"><a routerLink="/dashboard">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Ledger</li>
+  </ol>
+</nav>
+
+<div class="text-center mt-3">
+  <h2>Ledger Entries - {{pagination?.totalItems}} found</h2>
+</div>
+ 
+  
+<div class="container mt-3">
+    <form #form="ngForm" class="form-inline mb-3" (ngSubmit)=" loadLedger()" autocomplete="off">
+        <div class="form-group px-2">
+          <label>Sort By: </label>
+          <select name="sortBy" style="width: 130px" [(ngModel)]="ledgerparam.orderBy" class="form-control ml-1">
+            <option *ngFor="let sortBy of sortByList" [value]="sortBy.value">
+                    {{sortBy.display}}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group px-2">
+          <label>Page Size: </label>
+          <select name="pageSize" style="width: 130px" [(ngModel)]="ledgerparam.pageSize" class="form-control ml-1">
+              <option *ngFor="let pageSize of pageSizes" [value]="pageSize.value">
+                      {{pageSize.display}}
+                </option>
+            </select>
+        </div>
+        
+          <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
+          <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset Filters</button>
+          <button  class="btn btn-info ml-1" type="submit">New</button>
+    </form>
+  </div>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" [(ngModel)]="filterTerm" name="filterTerm" (ngModelChange)="Search()" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+    
+  <table class="table table-striped" style="margin-top: 150px;">
+      <thead>
+        <tr>
+          <th>vouNo</th>
+          <th>vouDate</th>
+ 
+          <th>trxType</th>
+          <th>bilChq</th>
+          <th>itemSr</th>
+          <th>accountId</th>
+          <th>amount</th>
+          <th>corrAccountId</th>
+          <th>vouDetail</th>
+        </tr>
+      </thead>
+      <tbody>
+           
+        <tr *ngFor="let ledger of ledgers |filter:filterTerm ">
+          <td>{{ ledger.vouNo }}</td>
+          <td>{{ledger.vouDate }}</td>
+          <td>{{ ledger.trxType }}</td>
+          <td>{{ ledger.bilChq }}</td>
+          <td>{{ ledger.itemSr }}</td>
+          <td>{{ ledger.accountId }}</td>
+          <td>{{ ledger.amount }}</td>
+          <td>{{ ledger.corrAccountId }}</td>
+          <td>{{ ledger.vouDetail }}</td>
+         </tr>
+       </tbody>
+  </table>
+
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  </pagination>
+</div>
+
+
+
+  
+
+
+
+ 

@@ -1,9 +1,10 @@
-export class AccountmasterParams {
+export class LedgerParamModel 
+{
     compCode:string;
     accYear:string;
     pageNumber = 1;
     pageSize = 10;
-    orderBy = 'accountId';
+    orderBy = 'vouNo';
     constructor(
         compCode:string,
         accYear: string
@@ -13,15 +14,4 @@ export class AccountmasterParams {
         this.compCode =compCode;
         this.accYear=accYear;
     }
-        
-    
 }
-
-
-
-
-
-
-
-
-

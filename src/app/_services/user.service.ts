@@ -49,26 +49,24 @@ export class UserService {
     );
   }
   
-
-
   getByName(userName: string):Observable<UserModel> {
-    
+     debugger;
     const httpParams=new HttpParams({
       fromObject:{
         userName:userName
       }
     });
    return this.http.get(this.baseUrl+'/User/ByName',{ params:httpParams }).pipe(
-     map((response: ServiceResponseModel) => {
-      
-       return JSON.parse(JSON.stringify(response.data));
-     }, error => {
+     map((response: ServiceResponseModel) => 
+    {
+      return JSON.parse(JSON.stringify(response.data));
+    },
+    error => 
+    {
        console.log(error)
        return throwError('Unable to get the Value ')
-     })
-   );
-
-
+    })
+  );
 }
 
 register(userData:UserModel) {

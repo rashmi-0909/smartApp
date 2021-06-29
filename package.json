@@ -20,22 +20,23 @@
     "@angular/platform-browser-dynamic": "~11.0.9",
     "@angular/router": "~11.0.9",
     "@auth0/angular-jwt": "^5.0.2",
-    "@ng-bootstrap/ng-bootstrap": "^9.0.2",
+    "@ng-bootstrap/ng-bootstrap": "^9.1.1",
     "@types/es6-shim": "^0.31.41",
-   
-   
-    "core-js": "^3.9.1",
+    "bootstrap": "^5.0.1",
+    "bootstrap-icons": "^1.5.0",
+    "core-js": "^3.13.1",
     "jquery": "^3.6.0",
     "mdbootstrap": "^4.19.2",
     "moment": "^2.29.1",
-    
+    "ng2-order-pipe": "^0.1.5",
+    "ng2-search-filter": "^0.5.1",
+    "ngx-bootstrap": "^6.2.0",
     "ngx-toastr": "^13.2.1",
     "popper.js": "^1.16.1",
     "rxjs": "^6.6.6",
     "rxjs-compat": "^6.6.6",
     "save": "^2.4.0",
     "tslib": "^2.0.0",
-    "typescript": "^4.0.7",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -43,7 +44,7 @@
     "@angular/cli": "~11.0.7",
     "@angular/compiler-cli": "~11.0.9",
     "@types/core-js": "^2.5.4",
-    "@types/jasmine": "^3.6.6",
+    "@types/jasmine": "^3.7.6",
     "@types/node": "^12.20.5",
     "@types/webpack-env": "^1.16.0",
     "codelyzer": "^6.0.0",
@@ -56,6 +57,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "tslint": "~6.1.0"
+    "tslint": "~6.1.0",
+    "typescript": "^4.0.7"
   }
 }

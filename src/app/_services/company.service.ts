@@ -26,12 +26,8 @@ export class CompanyService {
       })
     );
   }
-
-
   getById(compCode: string):Observable<CompanyModel> {
-   
-
-  return this.http.get(this.baseUrl+'/Company/'+compCode).pipe(
+     return this.http.get(this.baseUrl+'/Company/'+compCode).pipe(
     map((response: ServiceResponseModel) => {
      
       return JSON.parse(JSON.stringify(response.data));
@@ -43,8 +39,6 @@ export class CompanyService {
   );
 
   }
-
-
   addCompany(companyData:CompanyModel){
        console.log('in service');
        console.log(companyData);

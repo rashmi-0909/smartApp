@@ -3,11 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AccountMasterModel } from '../_models/accountmaster';
-import { ServiceResponseModel } from '../_models/serviceresponseModel';
+import { Accountidmodel } from '../_models/accountid';
+
 import { map } from 'rxjs/operators';
 import { Observable, throwError } from "rxjs";
 import { PaginatedResult } from '../_models/pagination ';
 import { AccountmasterParams } from '../_models/accountmasterparams';
+import { ServiceResponseModel } from '../_models/serviceresponseModel';
+import { Serviceresponsemodel } from '../serviceresponsemodel';
 
 
 @Injectable({
@@ -16,17 +19,15 @@ import { AccountmasterParams } from '../_models/accountmasterparams';
 export class AccountmasterService {
 
   baseUrl = environment.apiURL;
-  accountmasterModels: AccountMasterModel[] = [];
-
-  constructor(private http: HttpClient) { }
+   constructor(private http: HttpClient) { }
 
 
 
-  getAllAccountMaster(accountmasterParams: AccountmasterParams)  {
+  getAllAccountMaster(ob: AccountmasterParams)  {
    // debugger;
-    let params = this.getPaginationHeaders(accountmasterParams.pageNumber, accountmasterParams.pageSize);
-    params = params.append('orderBy', accountmasterParams.orderBy);
-    return this.getPaginatedResult<AccountMasterModel[]>(this.baseUrl+'/AccountMaster/GetAllByPage', params);
+   let params = this.getPaginationHeaders(ob.pageNumber, ob.pageSize);
+   params = params.append('orderBy', ob.orderBy);
+    return this.getPaginatedResult<AccountMasterModel[]>(this.baseUrl+'/AccountMaster/GetAllByPage', params,ob);
 
   }
 
@@ -40,13 +41,19 @@ export class AccountmasterService {
     return params;
   }
 
-  private getPaginatedResult<T>(url, params) {
+  private getPaginatedResult<T>(url, params,ob1:AccountmasterParams) {
    
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+    let accountbody = 
+    { compCode:ob1.compCode,
+      accYear:ob1.accYear,
+      orderBy:"accountId",
+    };
+    return this.http.post<T>(url,accountbody,{ observe: 'response', params: params }).pipe(
       map(response => {
        
-        paginatedResult.result = response.body;
+       let jsonBody: any = response.body;
+        paginatedResult.result = jsonBody.data;
         if (response.headers.get('Pagination') !== null) {
           paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
         }
@@ -56,22 +63,27 @@ export class AccountmasterService {
   }
 
 
-  AccountGetAll(): Observable<AccountMasterModel[]> {
+  AccountGetAll(compCode:string,accYear:string): Observable<AccountMasterModel[]> {
    
 
-    return this.http.get(this.baseUrl+'/AccountMaster/GetAll').pipe(
-      map((response: ServiceResponseModel) => {
+    
+    const accountbody = 
+    { compCode:compCode,
+      accYear:accYear
+     
+    };
+
+    return this.http.post(this.baseUrl+'/AccountMaster/GetAll',accountbody).pipe(
+      map((response:ServiceResponseModel ) => {
        
         return JSON.parse(JSON.stringify(response.data));
+        
       }, error => {
         console.log(error)
         return throwError('Unable to get the Value ')
       })
     );
   }
-
-
-  
 
   addAccount(accountData:AccountMasterModel){
        console.log('in service');

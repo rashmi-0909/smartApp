@@ -65,30 +65,10 @@ export class AccountmasterComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    // this.accYear1 = localStorage.getItem('AccYear');
-    // this.compCode1 = localStorage.getItem('CompCode');
-    // this.loadCompanyList();
-
-    // this.form = this.formBuilder.group({
-    // compCode: ['', Validators.required],
-    // accYear: ['',Validators.required],
-    // sortBy:[''],
-    // pageSize:['']
-    // });
-
-
-
     this.loadAccountList();
   }
 
 
-  // loadCompanyList() {
-  //   this.companyservice.getAllCompany().subscribe(companyList => {
-
-  //     this.companies = companyList;
-  //     console.log(this.companies);
-  //   })
-  // }
   loadAccountList() {
      // debugger;
     //  this.accountmasterParams.accYear=this.accYear1;
@@ -111,39 +91,13 @@ export class AccountmasterComponent implements OnInit {
   }
 
 
-
-
-
   pageChanged(event: any) {
     //debugger;
     this.accountmasterParams.pageNumber = event.page;
     this.loadAccountList();
   }
 
-
-
-
-
-
-  //   deleteCompany(compCode:string) {
-  //     const company = this.companies.find(x => x.compCode ===compCode);
-  //     if (!company) return;
-  //     this.isDeleting = true;
-  //     this.companyService.deleteCompany(compCode)
-  //         .pipe(first())
-  //         .subscribe(() => this.companies = this.companies.filter(x => x.compCode !== compCode));
-  //         // this.router.navigateByUrl('');
-  // }
-  // gotoCompanyDetails(url, id:string){
-  //   var myurl = `${url}/${id}`;
-  //   this.router.navigateByUrl(myurl).then(e => {
-  //     if (e) {
-  //       console.log("Navigation is successful!");
-  //     } else {
-  //       console.log("Navigation has failed!");
-  //     }
-  //   });
-  // }
+  
 
 
 }

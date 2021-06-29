@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-
+import { DatePipe } from '@angular/common';
 import{HttpClientModule,HttpHeaders}from '@angular/common/http';
 import{FormsModule,ReactiveFormsModule}from'@angular/forms';
 
@@ -49,8 +49,10 @@ import { BillmasterComponent } from './billmaster/billmaster.component';
 import { AddbillmasterComponent } from './billmaster/addbillmaster/addbillmaster.component';
 
 import { HttpInterceptorModule } from './security/http-interceptor.module';
-import { GeneralledgerComponent } from './ledger/ledger.component';
-
+import { LedgerComponent } from './ledger/ledger.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { GeneralLedgerComponent } from './general-ledger/general-ledger.component';
+import { SalesComponent } from './sales/sales.component';
 
 
 @NgModule({
@@ -82,7 +84,9 @@ import { GeneralledgerComponent } from './ledger/ledger.component';
     AddtransactionComponent,
     BillmasterComponent,
     AddbillmasterComponent,
-    GeneralledgerComponent,
+    LedgerComponent,
+    GeneralLedgerComponent,
+    SalesComponent,
    
    
     
@@ -102,8 +106,9 @@ import { GeneralledgerComponent } from './ledger/ledger.component';
      PaginationModule.forRoot(),
      BsDatepickerModule.forRoot(),
      BsDropdownModule.forRoot(),
+     Ng2SearchPipeModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ import{SharedserviceModel}from'../_models/sharedservicemodel';
   providedIn: 'root'
 })
 export class SharedService {
-    editdata:SharedserviceModel;
+  editdata:SharedserviceModel;
   private flagSource = new BehaviorSubject(false);
   currentFlag = this.flagSource.asObservable();
   private idSource = new BehaviorSubject("0");

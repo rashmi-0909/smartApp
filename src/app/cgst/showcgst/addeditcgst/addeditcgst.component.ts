@@ -62,7 +62,7 @@ import{ SharedService }from 'src/app/_services/shared.service';
   { 
       console.log('strt fetching');
        this.cgstservice.getById(this.cgstId_edit)
-      .subscribe(x => this.form.setValue(x));
+      .subscribe(x => this.form.patchValue(x));
   }
   get f() { return this.form.controls; }
   onSubmit() 
