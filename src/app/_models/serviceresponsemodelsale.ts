@@ -4,10 +4,12 @@ export interface Serviceresponsesalepurchase {
     message: null;
 }
 
+
 export interface Data {
     company:                  Company;
     salePurchaseDetails:      AccountHeadSummary[];
     salePurchaseDetailsTotal: AccountHeadSummary[];
+   
     accountHeadSummary:       AccountHeadSummary[];
     accountHeadSummaryTotal:  AccountHeadSummary[];
     cgstHeadSummary:          AccountHeadSummary[];
@@ -69,3 +71,5 @@ export interface Company {
     address:        string;
     voucherMasters: any[];
 }
+
+

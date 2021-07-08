@@ -22,7 +22,8 @@ export class LedgerService {
  ledgerdata:Array<Object>;
 baseUrl = environment.apiURL;
   constructor(private http: HttpClient) { }
-    
+    /******************************** Ledger *************************************/
+
 getAllLedger(ob:LedgerParamModel): Observable<LedgerModel[]> 
   {  
       let ledgerbody = 
@@ -41,6 +42,7 @@ getAllLedger(ob:LedgerParamModel): Observable<LedgerModel[]>
     console.log(error)
     }));
 }
+/******************************** Ledger By Page *************************************/
 
 
 getAllLedgerByPage(ob:LedgerParamModel)  {
@@ -98,7 +100,7 @@ getById(ob:AccountInfoModel):Observable<AccountMasterModel> {
     })
   );
 }
-
+/********************************Genral Ledger *************************************/
 
 GetGenralLedger(ob:GenralLedgerModel):Observable<lederReportDetailModel[]>
  {

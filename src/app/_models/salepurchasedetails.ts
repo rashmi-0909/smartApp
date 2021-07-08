@@ -69,7 +69,8 @@ export class salepurchaseReportDetailModel implements AccountHeadSummary  {
         this.cgstAmount=cgstAmount ;
         this.igstId=igstId;     
         this. igstName=igstName;    
-        this.igstAmount=igstAmount; 
+        this.igstAmount=igstAmount;
+         
 
     }
     

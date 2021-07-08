@@ -1,1 +1,478 @@
-<p>sales works!</p>
+<div class="container align-content-center">
+
+ <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+           <div class="row">
+        <div class="col ">
+          <label>Start Date</label>
+          <input type="datetime-local" formControlName="startDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
+          <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+            <div *ngIf="f.startDate.errors.required">Start Date is required</div>
+            <div *ngIf="f.startDate.errors?.dateLessThan"> Start Date Must be less Than Finish Date.
+            </div>
+          
+          </div>
+        </div>
+        <div class="col">
+          <label>Finish Date</label>
+          <input type="datetime-local" formControlName="finishDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.finishDate.errors }" />
+          <div *ngIf="submitted && f.finishDate.errors" class="invalid-feedback">
+            <div *ngIf="f.finishDate.errors.required">finish Date is required</div>
+            <!-- <div *ngIf="f.finishDate.errors?.dateLessThan"> Finish Date Must be Greater Than Finish Date.
+            </div> -->
+           
+          </div>
+        </div>
+    </div>  
+            <button type="submit" class="btn btn-primary">
+          
+            Show Sales Report
+          </button>
+          <a routerLink="/home" class="btn btn-link">Cancel</a>
+       
+      </form>
+</div>
+       
+ 
+
+<div  *ngIf="submitted"class="container-fluid " >
+  <h2 class="text-center">Sales Report</h2>
+  <table class="table table-sm align-content-center d-inline-block"  >
+  <tr>
+    <td>Company Name</td>
+  <td>{{myobject.name}}</td>
+  </tr>
+  <tr>
+    <td>Address</td>
+     <td>{{myobject.address}}</td>
+    </tr>
+  <tr>
+  <td>From Date</td>
+  <td>{{ fDate }}</td>
+  
+  </tr>
+   <tr>
+  <td>To Date</td>
+  <td>{{ tDate }}</td>
+ 
+</tr>
+
+</table>
+</div> 
+<div *ngIf="submitted" class="table-responsive lg-col-12" >
+    <table class="table table-responsive-xl scroll-smooth table-success  " >
+        <thead>
+            <tr>
+                <!-- <th scope="col">#</th> -->                              
+                <th scope="col"  sortable="cgstId">vouNo</th>
+                <th scope="col" sortable="cgstDetail">vouDate</th>
+                <th scope="col" sortable="cgstRate">trxType</th>
+                <th scope="col" sortable="Action"> bilChq</th>
+                <th scope="col" sortable=" ">billId</th>
+                <th scope="col" sortable="Action">accountId</th>
+                <th scope="col" sortable="Action">accountName</th>
+                <th scope="col" sortable="Action">drCr</th>
+                <th scope="col" sortable="Action">vouDetail</th>
+                <th scope="col" sortable="Action">vouAmount</th>
+                <th scope="col" sortable="Action">netAmount</th>
+                <th scope="col" sortable="Action">sgstId</th>
+                <th scope="col" sortable="Action">sgstName</th>
+                <th scope="col" sortable="Action"> sgstAmount</th>
+                <th scope="col" sortable="Action">cgstId</th>
+                <th scope="col" sortable="Action">cgstName</th>
+                <th scope="col" sortable="Action">cgstAmount </th>
+                <th scope="col" sortable="Action">igstId</th>
+                <th scope="col" sortable="Action">igstName</th>
+                <th scope="col" sortable="Action">igstAmount</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sale of salePurchaseDetailsList">
+                <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                <td>{{ sale.vouNo }}</td>
+                <td>{{ sale.vouDate |date}}</td>
+                <td>{{sale. trxType }}</td>
+                <td>{{sale.  bilChq }}</td>
+                <td>{{sale. billId }}</td>
+                <td>{{sale. accountId }}</td>
+                <td>{{sale.  accountName}}</td>
+                <td>{{sale. drCr }}</td>
+               
+                <td>{{ sale.vouDetail  }}</td>
+                <td>{{ sale. vouAmount  }}</td>
+                <td>{{ sale. netAmount  }}</td>
+                <td>{{ sale. sgstId }}</td>
+                <td>{{ sale. sgstName  }}</td>
+                <td>{{ sale. sgstAmount  }}</td>
+                <td>{{ sale.cgstId }}</td>
+                <td>{{ sale.cgstName  }}</td>
+                <td>{{ sale. cgstAmount  }}</td>
+                <td>{{ sale.igstId  }}</td>
+                <td>{{ sale.igstName  }}</td>
+                <td>{{ sale.igstAmount  }}</td>
+           </tr>
+          <tr  *ngFor="let item of  myobject1 " >
+             <td colspan="8"></td>
+             <td class="text-danger bold" >Total</td>
+             <td  >  {{ item.vouAmount   }}</td>
+             <td > {{item.netAmount  }}</td>
+             <td colspan="2"></td>
+             <td >{{item.sgstAmount   }}</td>
+             <td colspan="2"></td>
+             <td >{{item.cgstAmount   }}</td>
+             <td colspan="2"></td>
+             <td >{{item.igstAmount   }}</td>
+            </tr>
+           
+
+
+        </tbody>
+    </table>
+
+    <div *ngIf="submitted" class="table-responsive lg-col-12"  >
+      <table class="table table-responsive-xl scroll-smooth table-success  " >
+          <thead>
+            <tr> <td class="text-center align-content-center font-weight-bold" colspan="20">Account Head Summary</td> </tr>
+              <tr>
+                                            
+                  <th scope="col"  sortable="cgstId">vouNo</th>
+                  <th scope="col" sortable="cgstDetail">vouDate</th>
+                  <th scope="col" sortable="cgstRate">trxType</th>
+                  <th scope="col" sortable="Action"> bilChq</th>
+                  <th scope="col" sortable=" ">billId</th>
+                  <th scope="col" sortable="Action">accountId</th>
+                  <th scope="col" sortable="Action">accountName</th>
+                  <th scope="col" sortable="Action">drCr</th>
+                  <th scope="col" sortable="Action">vouDetail</th>
+                  <th scope="col" sortable="Action">vouAmount</th>
+                  <th scope="col" sortable="Action">netAmount</th>
+                  <th scope="col" sortable="Action">sgstId</th>
+                  <th scope="col" sortable="Action">sgstName</th>
+                  <th scope="col" sortable="Action"> sgstAmount</th>
+                  <th scope="col" sortable="Action">cgstId</th>
+                  <th scope="col" sortable="Action">cgstName</th>
+                  <th scope="col" sortable="Action">cgstAmount </th>
+                  <th scope="col" sortable="Action">igstId</th>
+                  <th scope="col" sortable="Action">igstName</th>
+                  <th scope="col" sortable="Action">igstAmount</th>
+  
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let sale of accountHeadSummary">
+                  <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                  <td>{{ sale.vouNo }}</td>
+                  <td>{{ sale.vouDate |date}}</td>
+                  <td>{{sale. trxType }}</td>
+                  <td>{{sale.  bilChq }}</td>
+                  <td>{{sale. billId }}</td>
+                  <td>{{sale. accountId }}</td>
+                  <td>{{sale.  accountName}}</td>
+                  <td>{{sale. drCr }}</td>
+                 
+                  <td>{{ sale.vouDetail  }}</td>
+                  <td>{{ sale. vouAmount  }}</td>
+                  <td>{{ sale. netAmount  }}</td>
+                  <td>{{ sale. sgstId }}</td>
+                  <td>{{ sale. sgstName  }}</td>
+                  <td>{{ sale. sgstAmount  }}</td>
+                  <td>{{ sale.cgstId }}</td>
+                  <td>{{ sale.cgstName  }}</td>
+                  <td>{{ sale. cgstAmount  }}</td>
+                  <td>{{ sale.igstId  }}</td>
+                  <td>{{ sale.igstName  }}</td>
+                  <td>{{ sale.igstAmount  }}</td>
+             </tr>
+             <tr  *ngFor="let item of  accountHeadSummaryTotal " >
+              <td colspan="8"></td>
+              <td class="text-danger bold" >Total</td>
+              <td  >  {{ item.vouAmount   }}</td>
+              <td > {{item.netAmount  }}</td>
+              <td colspan="2"></td>
+              <td >{{item.sgstAmount   }}</td>
+              <td colspan="2"></td>
+              <td >{{item.cgstAmount   }}</td>
+              <td colspan="2"></td>
+              <td >{{item.igstAmount   }}</td>
+             </tr>
+
+
+
+
+
+          </tbody>
+      </table>
+
+
+
+
+  </div>
+
+
+  <div *ngIf="submitted" class="table-responsive lg-col-12"  >
+    <table class="table table-responsive-xl scroll-smooth table-success  " >
+        <thead>
+          <tr> <td class="text-center align-content-center font-weight-bold" colspan="20">CGST Head Summary</td> </tr>
+            <tr>
+                                          
+                <th scope="col"  sortable="cgstId">vouNo</th>
+                <th scope="col" sortable="cgstDetail">vouDate</th>
+                <th scope="col" sortable="cgstRate">trxType</th>
+                <th scope="col" sortable="Action"> bilChq</th>
+                <th scope="col" sortable=" ">billId</th>
+                <th scope="col" sortable="Action">accountId</th>
+                <th scope="col" sortable="Action">accountName</th>
+                <th scope="col" sortable="Action">drCr</th>
+                <th scope="col" sortable="Action">vouDetail</th>
+                <th scope="col" sortable="Action">vouAmount</th>
+                <th scope="col" sortable="Action">netAmount</th>
+                <th scope="col" sortable="Action">sgstId</th>
+                <th scope="col" sortable="Action">sgstName</th>
+                <th scope="col" sortable="Action"> sgstAmount</th>
+                <th scope="col" sortable="Action">cgstId</th>
+                <th scope="col" sortable="Action">cgstName</th>
+                <th scope="col" sortable="Action">cgstAmount </th>
+                <th scope="col" sortable="Action">igstId</th>
+                <th scope="col" sortable="Action">igstName</th>
+                <th scope="col" sortable="Action">igstAmount</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sale of cgstHeadSummary">
+                <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+                <td>{{ sale.vouNo }}</td>
+                <td>{{ sale.vouDate |date}}</td>
+                <td>{{sale. trxType }}</td>
+                <td>{{sale.  bilChq }}</td>
+                <td>{{sale. billId }}</td>
+                <td>{{sale. accountId }}</td>
+                <td>{{sale.  accountName}}</td>
+                <td>{{sale. drCr }}</td>
+               
+                <td>{{ sale.vouDetail  }}</td>
+                <td>{{ sale. vouAmount  }}</td>
+                <td>{{ sale. netAmount  }}</td>
+                <td>{{ sale. sgstId }}</td>
+                <td>{{ sale. sgstName  }}</td>
+                <td>{{ sale. sgstAmount  }}</td>
+                <td>{{ sale.cgstId }}</td>
+                <td>{{ sale.cgstName  }}</td>
+                <td>{{ sale. cgstAmount  }}</td>
+                <td>{{ sale.igstId  }}</td>
+                <td>{{ sale.igstName  }}</td>
+                <td>{{ sale.igstAmount  }}</td>
+           </tr>
+           <tr  *ngFor="let item of  cgstHeadSummaryTotal " >
+            <td colspan="8"></td>
+            <td class="text-danger bold" >Total</td>
+            <td  >  {{ item.vouAmount   }}</td>
+            <td > {{item.netAmount  }}</td>
+            <td colspan="2"></td>
+            <td >{{item.sgstAmount   }}</td>
+            <td colspan="2"></td>
+            <td >{{item.cgstAmount   }}</td>
+            <td colspan="2"></td>
+            <td >{{item.igstAmount   }}</td>
+           </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+
+
+
+
+</div>
+
+
+
+
+
+<div *ngIf="submitted"  class="table-responsive lg-col-12"  >
+  <table class="table table-responsive-xl scroll-smooth table-success  " >
+      <thead>
+        <tr> <td class="text-center align-content-center font-weight-bold" colspan="20">SGST Head Summary</td> </tr>
+          <tr>
+                                        
+              <th scope="col"  sortable="cgstId">vouNo</th>
+              <th scope="col" sortable="cgstDetail">vouDate</th>
+              <th scope="col" sortable="cgstRate">trxType</th>
+              <th scope="col" sortable="Action"> bilChq</th>
+              <th scope="col" sortable=" ">billId</th>
+              <th scope="col" sortable="Action">accountId</th>
+              <th scope="col" sortable="Action">accountName</th>
+              <th scope="col" sortable="Action">drCr</th>
+              <th scope="col" sortable="Action">vouDetail</th>
+              <th scope="col" sortable="Action">vouAmount</th>
+              <th scope="col" sortable="Action">netAmount</th>
+              <th scope="col" sortable="Action">sgstId</th>
+              <th scope="col" sortable="Action">sgstName</th>
+              <th scope="col" sortable="Action"> sgstAmount</th>
+              <th scope="col" sortable="Action">cgstId</th>
+              <th scope="col" sortable="Action">cgstName</th>
+              <th scope="col" sortable="Action">cgstAmount </th>
+              <th scope="col" sortable="Action">igstId</th>
+              <th scope="col" sortable="Action">igstName</th>
+              <th scope="col" sortable="Action">igstAmount</th>
+
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let sale of sgstHeadSummary">
+              <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+              <td>{{ sale.vouNo }}</td>
+              <td>{{ sale.vouDate |date}}</td>
+              <td>{{sale. trxType }}</td>
+              <td>{{sale.  bilChq }}</td>
+              <td>{{sale. billId }}</td>
+              <td>{{sale. accountId }}</td>
+              <td>{{sale.  accountName}}</td>
+              <td>{{sale. drCr }}</td>
+             
+              <td>{{ sale.vouDetail  }}</td>
+              <td>{{ sale. vouAmount  }}</td>
+              <td>{{ sale. netAmount  }}</td>
+              <td>{{ sale. sgstId }}</td>
+              <td>{{ sale. sgstName  }}</td>
+              <td>{{ sale. sgstAmount  }}</td>
+              <td>{{ sale.cgstId }}</td>
+              <td>{{ sale.cgstName  }}</td>
+              <td>{{ sale. cgstAmount  }}</td>
+              <td>{{ sale.igstId  }}</td>
+              <td>{{ sale.igstName  }}</td>
+              <td>{{ sale.igstAmount  }}</td>
+         </tr>
+         <tr  *ngFor="let item of  sgstHeadSummaryTotal " >
+          <td colspan="8"></td>
+          <td class="text-danger bold" >Total</td>
+          <td  >  {{ item.vouAmount   }}</td>
+          <td > {{item.netAmount  }}</td>
+          <td colspan="2"></td>
+          <td >{{item.sgstAmount   }}</td>
+          <td colspan="2"></td>
+          <td >{{item.cgstAmount   }}</td>
+          <td colspan="2"></td>
+          <td >{{item.igstAmount   }}</td>
+         </tr>
+
+
+
+
+
+      </tbody>
+  </table>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div *ngIf="submitted"  class="table-responsive lg-col-12"  >
+  <table class="table table-responsive-xl scroll-smooth table-success  " >
+      <thead>
+        <tr> <td class="text-center align-content-center font-weight-bolder " colspan="20">IGST Head Summary</td> </tr>
+          <tr>
+                                        
+              <th scope="col"  sortable="cgstId">vouNo</th>
+              <th scope="col" sortable="cgstDetail">vouDate</th>
+              <th scope="col" sortable="cgstRate">trxType</th>
+              <th scope="col" sortable="Action"> bilChq</th>
+              <th scope="col" sortable=" ">billId</th>
+              <th scope="col" sortable="Action">accountId</th>
+              <th scope="col" sortable="Action">accountName</th>
+              <th scope="col" sortable="Action">drCr</th>
+              <th scope="col" sortable="Action">vouDetail</th>
+              <th scope="col" sortable="Action">vouAmount</th>
+              <th scope="col" sortable="Action">netAmount</th>
+              <th scope="col" sortable="Action">sgstId</th>
+              <th scope="col" sortable="Action">sgstName</th>
+              <th scope="col" sortable="Action"> sgstAmount</th>
+              <th scope="col" sortable="Action">cgstId</th>
+              <th scope="col" sortable="Action">cgstName</th>
+              <th scope="col" sortable="Action">cgstAmount </th>
+              <th scope="col" sortable="Action">igstId</th>
+              <th scope="col" sortable="Action">igstName</th>
+              <th scope="col" sortable="Action">igstAmount</th>
+
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let sale of igstHeadSummary">
+              <!-- <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th> -->
+              <td>{{ sale.vouNo }}</td>
+              <td>{{ sale.vouDate |date}}</td>
+              <td>{{sale. trxType }}</td>
+              <td>{{sale.  bilChq }}</td>
+              <td>{{sale. billId }}</td>
+              <td>{{sale. accountId }}</td>
+              <td>{{sale.  accountName}}</td>
+              <td>{{sale. drCr }}</td>
+             
+              <td>{{ sale.vouDetail  }}</td>
+              <td>{{ sale. vouAmount  }}</td>
+              <td>{{ sale. netAmount  }}</td>
+              <td>{{ sale. sgstId }}</td>
+              <td>{{ sale. sgstName  }}</td>
+              <td>{{ sale. sgstAmount  }}</td>
+              <td>{{ sale.cgstId }}</td>
+              <td>{{ sale.cgstName  }}</td>
+              <td>{{ sale. cgstAmount  }}</td>
+              <td>{{ sale.igstId  }}</td>
+              <td>{{ sale.igstName  }}</td>
+              <td>{{ sale.igstAmount  }}</td>
+         </tr>
+         <tr  *ngFor="let item of  igstHeadSummaryTotal " >
+          <td colspan="8"></td>
+          <td class="text-danger bold" >Total</td>
+          <td  >  {{ item.vouAmount   }}</td>
+          <td > {{item.netAmount  }}</td>
+          <td colspan="2"></td>
+          <td >{{item.sgstAmount   }}</td>
+          <td colspan="2"></td>
+          <td >{{item.cgstAmount   }}</td>
+          <td colspan="2"></td>
+          <td >{{item.igstAmount   }}</td>
+         </tr>
+
+
+
+
+
+      </tbody>
+  </table>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

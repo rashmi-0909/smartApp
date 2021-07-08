@@ -130,7 +130,9 @@
   <tr *ngFor ="let subItem of item.accountLedger">
     
     <td> {{subItem.corrAccountId}}</td>
-    <td> {{ subItem.corrAccountName }}</td>
+    <td rowspan="2"> {{ subItem.corrAccountName }}
+      {{ subItem.vouDetail}}
+    </td>
     <td> {{ subItem.trxType }}</td>
    <td> {{ subItem.vouNo }}</td>
     <td>{{ subItem.vouDate }}</td>

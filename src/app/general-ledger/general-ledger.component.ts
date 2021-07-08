@@ -6,7 +6,7 @@ import{AccountmasterService}from'../_services/accountmaster.service';
 import{LedgerService}from'../_services/ledger.service';
 import{GenralLedgerModel}from '../_models/generalledger';
 import {AccountmasterParams } from '../_models/accountmasterparams';
-import {FormBuilder, FormGroup, Validators,AbstractControl ,ValidatorFn} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators,AbstractControl ,ValidatorFn,} from '@angular/forms';
 import {AccountMasterModel } from '../_models/accountmaster';
 import{lederReportDetailModel}from '../_models/ledgermodeldetail';
 import{Account_Header}from '../_models/ledgermodeldetail';
@@ -43,6 +43,7 @@ fiDate=new Date();
  genralledgerList:lederReportDetailModel[]=[];
  company_forledger:LedgerCompany;
  myobject:object;
+ 
  pagination: Pagination;
  pageSizes = [{ value: '10', display: '10' }, { value: '20', display: '20' }, { value: '50', display: '50' }];
  

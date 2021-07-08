@@ -14,6 +14,7 @@ import{AccountmasterComponent}from'./accountmaster/accountmaster.component';
 import{AddaccountComponent}from'./accountmaster/addaccount/addaccount.component';
 import{LedgerComponent}from './ledger/ledger.component';
 import{ GeneralLedgerComponent}from'./general-ledger/general-ledger.component';
+import{SalesComponent}from'./sales/sales.component';
 
 import{AddtypemasterComponent}from'./typemaster/addtypemaster/addtypemaster.component';
 import{ShowtypemasterComponent}from './typemaster/showtypemaster/showtypemaster.component';
@@ -53,7 +54,8 @@ const routes: Routes =
   { path:'showusers/edit/:userName',component:RegisterUserComponent },
   {path:'showusers',component:ShowusersComponent},
   {path:'ledger',component:LedgerComponent},
-  {path:'genralledger',component:GeneralLedgerComponent}
+  {path:'genralledger',component:GeneralLedgerComponent},
+  {path:'sale-report',component:SalesComponent}
 ];
 
 @NgModule({
