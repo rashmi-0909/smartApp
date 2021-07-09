@@ -28,7 +28,7 @@
     </div>  
             <button type="submit" class="btn btn-primary">
           
-            Show Sales Report
+            Show SalesPurchase Report
           </button>
           <a routerLink="/home" class="btn btn-link">Cancel</a>
        
@@ -38,8 +38,9 @@
  
 
 <div  *ngIf="submitted"class="container-fluid " >
-  <h2 class="text-center">Sales Report</h2>
-  <table class="table table-sm align-content-center d-inline-block"  >
+  <h2 *ngIf=(spflag) class="text-center">Sales Report</h2>
+  <h2 *ngIf=(!spflag) class="text-center">Purchase Report</h2>
+  <table class="table table-valign-middle align-content-center d-inline-block"  >
   <tr>
     <td>Company Name</td>
   <td>{{myobject.name}}</td>

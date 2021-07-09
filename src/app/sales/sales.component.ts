@@ -10,7 +10,7 @@ import {DatePipe,formatDate } from '@angular/common';
 import { Serviceresponsesalepurchase } from '../_models/serviceresponsemodelsale';
 import{LedgerCompany}from '../_models/ledgercompany';
 import{SaleCompanyModel}from'../_models/salecompanymodel';
-
+import { Router, RouterModule, RouterLinkActive } from '@angular/router';
 
 
 @Component({
@@ -40,9 +40,23 @@ export class SalesComponent implements OnInit {
   salepurchaseInput:SalePurchaseInput;
   fDate:string;
   tDate:string;
+  saleOrPurchaseType:string;
+  spflag:boolean;
   
-  constructor( private formBuilder: FormBuilder,private saleservice:SalesService,private ledggerservice:LedgerService,private datePipe:DatePipe) {
-   this.salepurchaseInput=new SalePurchaseInput('','',this.startDate,this.finishDate,"S");
+  constructor( private formBuilder: FormBuilder,private saleservice:SalesService,private ledggerservice:LedgerService,private datePipe:DatePipe,private router:Router) {
+       debugger;
+    if(this.router.url=="/sale-report")
+     { this.saleOrPurchaseType="S";
+       this.spflag=true;
+    this.salepurchaseInput=new SalePurchaseInput('','',this.startDate,this.finishDate,this.saleOrPurchaseType);
+     }
+     if(this.router.url=="/purchase-report")
+    {  
+      this.saleOrPurchaseType="P";
+      
+     this.salepurchaseInput=new SalePurchaseInput('','',this.startDate,this.finishDate,this.saleOrPurchaseType);
+
+     }
    this.myobject=new SaleCompanyModel("","");
  
   }
@@ -72,7 +86,7 @@ onSubmit()
   this.compCode=localStorage.getItem('CompCode').toString();
   this.accYear=localStorage.getItem('AccYear').toString();
   
-  this.salepurchaseInput=new SalePurchaseInput(this.compCode,this.accYear,this.startDate,this.finishDate,"S");
+  this.salepurchaseInput=new SalePurchaseInput(this.compCode,this.accYear,this.startDate,this.finishDate,this.saleOrPurchaseType);
   this.saleservice.GetSaleReport_company(this.salepurchaseInput).subscribe(response =>{ 
    
     this.myobject=response;

@@ -55,7 +55,8 @@ const routes: Routes =
   {path:'showusers',component:ShowusersComponent},
   {path:'ledger',component:LedgerComponent},
   {path:'genralledger',component:GeneralLedgerComponent},
-  {path:'sale-report',component:SalesComponent}
+  {path:'sale-report',component:SalesComponent},
+  {path:'purchase-report',component:SalesComponent}
 ];
 
 @NgModule({
